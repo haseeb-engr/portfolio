@@ -55,3 +55,72 @@ together — from **IoT lab infrastructure** and **MQTT dashboards** to
 ![SolidWorks](https://img.shields.io/badge/SolidWorks-FF0000?style=flat&logo=dassaultsystemes&logoColor=white)
 
 **Hardware & Domains**
+---
+
+## 🚀 Key Projects
+
+### 🔋 TRiNNOVATION OWL — Digital Laboratory System
+**TH OWL / iFE Institut für Energieforschung · 2024–2026**
+
+> Transformed a conventional DC laboratory into a fully integrated
+> digital environment for the DC-Transferzentrum at TH OWL.
+
+- ⚡ Real-time monitoring via **MQTT** broker + **SQL** database
+- 🖥️ Custom **Python GUI dashboards** for intuitive lab control
+- 📷 Live **camera integration** + threshold-based alarm system
+- 🔄 **Digital Twin** concepts for simulation & system evaluation
+- 🏛️ Federally funded — *Bund-Länder-Initiative "Innovative Hochschule"*
+
+🔗 [Featured by Forschung & Transfer TH OWL](https://www.linkedin.com/posts/forschung-transfer-th-owl_praxisnah-testen-lernen-und-wissen-weitergeben-activity-7442510604986208256-YYUx)
+
+---
+
+### ✈️ Drone Avionics Integration — PNEC NUST
+**Pakistan Naval Engineering College, NUST · 2022–2023**
+
+> Hardware-Software integration for fixed-wing and rotary-wing
+> UAV systems at the NDT & Reliability Engineering Research Center.
+
+- 🛩️ **Avionics integration** for fixed-wing & rotary-wing drones
+- 🔥 **Mini jet engine test bench** development & commissioning
+- 💾 **Firmware development** for embedded controllers
+- 🔧 Rapid prototyping: CNC, 3D printing, electronics integration
+- ✅ System testing, fault diagnosis & hardware-software validation
+
+
+
+## 💼 Work Experience
+
+| Period | Role | Organisation |
+|--------|------|-------------|
+| Aug 2025 – Feb 2026 | Wissenschaftlicher Mitarbeiter | TH OWL / iFE, Lemgo |
+| Feb 2024 – Aug 2025 | Wissenschaftliche Hilfskraft | iFE TH OWL, Lemgo |
+| Jan 2022 – Jun 2023 | HW-SW Integration Engineer | PNEC NUST, Karachi |
+
+---
+
+## 🎓 Education
+
+| Degree | Institution | Year |
+|--------|------------|------|
+| M.Sc. Information Technology *(ongoing)* | TH OWL, Lemgo, Germany | 2023 – present |
+| B.Eng. Electrical & Electronics Engineering | PAF-KIET, Karachi, Pakistan | 2016 – 2020 |
+
+---
+
+## 📫 Get In Touch
+
+<p align="center">
+  <a href="https://linkedin.com/in/haseeb6902">
+    <img src="https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin"/>
+  </a>
+  &nbsp;
+  <a href="mailto:m@engrhaseeb.de">
+    <img src="https://img.shields.io/badge/Email-Contact-D14836?style=for-the-badge&logo=gmail"/>
+  </a>
+</p>
+
+<p align="center">
+  <i>Open to Werkstudent, part-time, or full-time roles in<br>
+  Embedded Systems · IoT · Firmware · Test Engineering · Drone/UAV Engineering</i>
+</p>
