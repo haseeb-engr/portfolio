@@ -1,960 +1,1103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Muhammad Haseeb — Embedded Systems & IoT Engineer</title>
-<meta name="description" content="Muhammad Haseeb – Embedded Systems & IoT Engineer based in Lemgo, Germany. Firmware, Drone/UAV, Hardware-Software Integration, M.Sc. IT @ TH OWL.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=hhSyne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Muhammad Haseeb, Embedded Systems & IoT Engineer</title>
+<meta name="description" content="Muhammad Haseeb. Embedded Systems & IoT Engineer based in Lemgo, Germany. Bridging hardware and software, from concept to deployment. M.Sc. IT @ TH OWL." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <style>
   :root {
-    --bg:        #060a12;
-    --bg2:       #0b1120;
-    --bg3:       #0f1929;
-    --accent:    #00c8ff;
-    --accent2:   #0057ff;
-    --accent3:   #00ffd5;
-    --text:      #e8f0ff;
-    --muted:     #6b82a8;
-    --border:    rgba(0,200,255,0.15);
-    --glow:      0 0 30px rgba(0,200,255,0.25);
+    --bg-base: #0f0e0c;
+    --bg-elev-1: #1a1816;
+    --bg-elev-2: #221f1c;
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-strong: rgba(255, 255, 255, 0.14);
+    --text-primary: #f5f1ea;
+    --text-secondary: #b8afa1;
+    --text-tertiary: #7a7268;
+    --accent: #c8794a;
+    --accent-soft: rgba(200, 121, 74, 0.12);
+    --accent-strong: rgba(200, 121, 74, 0.6);
   }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
-
   body {
-    font-family: 'Syne', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    overflow-x: hidden;
-    cursor: none;
+    margin: 0;
+    background: var(--bg-base);
+    color: var(--text-primary);
+    font-family: 'Inter', 'DIN Next', -apple-system, sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
-
-  /* Custom cursor */
-  .cursor {
-    width: 10px; height: 10px;
-    background: var(--accent);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%,-50%);
-    transition: transform 0.1s, width 0.2s, height 0.2s, opacity 0.2s;
-    mix-blend-mode: screen;
-  }
-  .cursor-ring {
-    width: 36px; height: 36px;
-    border: 1.5px solid var(--accent);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9998;
-    transform: translate(-50%,-50%);
-    transition: transform 0.15s ease-out, width 0.3s, height 0.3s, opacity 0.3s;
-    opacity: 0.5;
-  }
-
-  /* Grid background */
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
+  .font-display { font-family: 'Fraunces', serif; font-optical-sizing: auto; letter-spacing: -0.02em; }
+  .font-mono { font-family: 'JetBrains Mono', monospace; }
+  .accent { color: var(--accent); }
+  .text-secondary { color: var(--text-secondary); }
+  .text-tertiary { color: var(--text-tertiary); }
+  .bg-elev-1 { background: var(--bg-elev-1); }
+  .bg-elev-2 { background: var(--bg-elev-2); }
+  .border-subtle { border-color: var(--border-subtle); }
+  .border-strong { border-color: var(--border-strong); }
+  .accent-soft-bg { background: var(--accent-soft); }
+  .grid-bg {
     background-image:
-      linear-gradient(rgba(0,200,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,200,255,0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
   }
-
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.2rem 4rem;
-    background: rgba(6,10,18,0.85);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.85rem;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-    text-decoration: none;
-  }
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-  .nav-links a {
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.2s;
-    position: relative;
-  }
-  .nav-links a::after {
+  .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .project-card { transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease; }
+  .project-card:hover { transform: translateY(-3px); border-color: var(--accent-strong); background: var(--bg-elev-2); }
+  .nav-link { position: relative; transition: color 0.2s ease; }
+  .nav-link:hover { color: var(--accent); }
+  .nav-link::after {
     content: '';
-    position: absolute; bottom: -4px; left: 0; right: 0;
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
     height: 1px;
     background: var(--accent);
-    transform: scaleX(0);
-    transition: transform 0.2s;
-  }
-  .nav-links a:hover { color: var(--accent); }
-  .nav-links a:hover::after { transform: scaleX(1); }
-
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column;
-    justify-content: center;
-    padding: 8rem 4rem 4rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  /* Animated glow orbs */
-  .orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    pointer-events: none;
-    animation: float 8s ease-in-out infinite;
-  }
-  .orb-1 {
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(0,87,255,0.18), transparent);
-    top: -100px; right: -100px;
-    animation-delay: 0s;
-  }
-  .orb-2 {
-    width: 350px; height: 350px;
-    background: radial-gradient(circle, rgba(0,200,255,0.12), transparent);
-    bottom: 50px; left: -80px;
-    animation-delay: 3s;
-  }
-  @keyframes float {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-30px) scale(1.05); }
-  }
-
-  .hero-tag {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--accent);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-    display: flex; align-items: center; gap: 0.8rem;
-    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
-  }
-  .hero-tag::before {
-    content: '';
-    width: 40px; height: 1px;
-    background: var(--accent);
-  }
-
-  .hero-name {
-    font-size: clamp(3rem, 7vw, 6rem);
-    font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    margin-bottom: 1rem;
-    opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
-  }
-  .hero-name span {
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .hero-title {
-    font-size: clamp(1rem, 2vw, 1.4rem);
-    font-weight: 500;
-    color: var(--muted);
-    margin-bottom: 2rem;
-    max-width: 600px;
-    line-height: 1.6;
-    opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
-  }
-  .hero-title strong { color: var(--text); }
-
-  .hero-location {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    margin-bottom: 3rem;
-    display: flex; align-items: center; gap: 0.5rem;
-    opacity: 0; animation: fadeUp 0.8s 0.7s forwards;
-  }
-  .hero-location::before { content: '📍'; font-size: 0.9rem; }
-
-  .hero-btns {
-    display: flex; gap: 1rem; flex-wrap: wrap;
-    opacity: 0; animation: fadeUp 0.8s 0.9s forwards;
-  }
-
-  .btn {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    padding: 0.85rem 2rem;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border-radius: 3px;
-    transition: all 0.25s;
-    position: relative;
-    overflow: hidden;
-  }
-  .btn-primary {
-    background: var(--accent);
-    color: var(--bg);
-    border: 1px solid var(--accent);
-  }
-  .btn-primary:hover {
-    background: transparent;
-    color: var(--accent);
-    box-shadow: var(--glow);
-  }
-  .btn-ghost {
-    background: transparent;
-    color: var(--accent);
-    border: 1px solid var(--border);
-  }
-  .btn-ghost:hover {
-    border-color: var(--accent);
-    box-shadow: var(--glow);
-  }
-
-  /* PHOTO + STATUS */
-  .hero-photo-wrap {
-    position: absolute;
-    right: 6rem;
-    top: 50%;
-    transform: translateY(-50%);
-    opacity: 0;
-    animation: fadeIn 1s 1s forwards;
-  }
-  .hero-photo {
-    width: 260px; height: 320px;
-    object-fit: cover;
-    object-position: center top;
-    border-radius: 4px;
-    border: 1px solid var(--border);
-    filter: grayscale(20%) contrast(1.1);
-    box-shadow: 0 0 60px rgba(0,200,255,0.15), 0 30px 60px rgba(0,0,0,0.5);
-    display: block;
-  }
-  .photo-placeholder {
-    width: 260px; height: 320px;
-    background: var(--bg3);
-    border: 1px dashed var(--border);
-    border-radius: 4px;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 0.5rem;
-    color: var(--muted);
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    text-align: center;
-  }
-  .photo-placeholder svg { opacity: 0.3; }
-
-  .status-badge {
-    position: absolute;
-    bottom: -16px; right: -16px;
-    background: var(--bg2);
-    border: 1px solid var(--accent3);
-    border-radius: 4px;
-    padding: 0.5rem 0.9rem;
-    display: flex; align-items: center; gap: 0.5rem;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--accent3);
-    letter-spacing: 0.08em;
-    white-space: nowrap;
-    box-shadow: 0 0 20px rgba(0,255,213,0.15);
-  }
-  .status-dot {
-    width: 7px; height: 7px;
-    background: var(--accent3);
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.8); }
-  }
-
-  /* SECTION */
-  section {
-    padding: 6rem 4rem;
-    position: relative;
-    z-index: 1;
-  }
-
-  .section-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--accent);
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-    display: flex; align-items: center; gap: 0.8rem;
-  }
-  .section-label::before {
-    content: '';
-    width: 30px; height: 1px;
-    background: var(--accent);
-  }
-
-  .section-title {
-    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    margin-bottom: 3rem;
-    line-height: 1.1;
-  }
-
-  /* ABOUT */
-  #about { background: var(--bg2); }
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: start;
-    max-width: 1100px;
-  }
-  .about-text p {
-    font-size: 1.05rem;
-    line-height: 1.8;
-    color: var(--muted);
-    margin-bottom: 1.2rem;
-  }
-  .about-text p strong { color: var(--text); }
-  .about-text p em {
-    color: var(--accent);
-    font-style: normal;
-    font-weight: 600;
-  }
-
-  .about-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.2rem;
-  }
-  .stat-card {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 1.4rem;
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-  .stat-card:hover {
-    border-color: var(--accent);
-    box-shadow: var(--glow);
-  }
-  .stat-num {
-    font-family: 'Space Mono', monospace;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--accent);
-    line-height: 1;
-    margin-bottom: 0.3rem;
-  }
-  .stat-label {
-    font-size: 0.8rem;
-    color: var(--muted);
-    line-height: 1.3;
-  }
-
-  /* SKILLS */
-  #skills { background: var(--bg); }
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    max-width: 1100px;
-  }
-  .skill-group {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 1.8rem;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-  .skill-group:hover {
-    border-color: rgba(0,200,255,0.4);
-    transform: translateY(-3px);
-  }
-  .skill-group-title {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--accent);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 1.2rem;
-    padding-bottom: 0.8rem;
-    border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; gap: 0.5rem;
-  }
-  .skill-tags {
-    display: flex; flex-wrap: wrap; gap: 0.5rem;
-  }
-  .skill-tag {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.68rem;
-    padding: 0.35rem 0.7rem;
-    background: rgba(0,200,255,0.06);
-    border: 1px solid rgba(0,200,255,0.15);
-    border-radius: 2px;
-    color: var(--text);
-    letter-spacing: 0.05em;
-    transition: all 0.2s;
-  }
-  .skill-tag:hover {
-    background: rgba(0,200,255,0.15);
-    border-color: var(--accent);
-    color: var(--accent);
-  }
-
-  /* EXPERIENCE */
-  #experience { background: var(--bg2); }
-  .timeline { max-width: 800px; }
-  .timeline-item {
-    display: grid;
-    grid-template-columns: 180px 1fr;
-    gap: 2rem;
-    padding: 2rem 0;
-    border-bottom: 1px solid var(--border);
-    position: relative;
-  }
-  .timeline-item:last-child { border-bottom: none; }
-  .timeline-period {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--muted);
-    letter-spacing: 0.08em;
-    padding-top: 0.2rem;
-    line-height: 1.6;
-  }
-  .timeline-period span {
-    display: block;
-    color: var(--accent);
-    font-weight: 700;
-    margin-bottom: 0.3rem;
-  }
-  .timeline-role {
-    font-size: 1.05rem;
-    font-weight: 700;
-    margin-bottom: 0.3rem;
-    color: var(--text);
-  }
-  .timeline-org {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--accent);
-    margin-bottom: 0.8rem;
-    letter-spacing: 0.05em;
-  }
-  .timeline-desc {
-    font-size: 0.9rem;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-  .timeline-tags {
-    display: flex; flex-wrap: wrap; gap: 0.4rem;
-    margin-top: 0.8rem;
-  }
-  .timeline-tag {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.62rem;
-    padding: 0.2rem 0.55rem;
-    background: rgba(0,87,255,0.1);
-    border: 1px solid rgba(0,87,255,0.25);
-    border-radius: 2px;
-    color: var(--accent2);
-    letter-spacing: 0.05em;
-  }
-
-  /* CONTACT */
-  #contact { background: var(--bg); }
-  .contact-inner {
-    max-width: 700px;
-  }
-  .contact-intro {
-    font-size: 1.05rem;
-    color: var(--muted);
-    line-height: 1.8;
-    margin-bottom: 3rem;
-  }
-  .contact-intro strong { color: var(--text); }
-  .contact-links {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    margin-bottom: 2.5rem;
-  }
-  .contact-link {
-    display: flex; align-items: center; gap: 0.8rem;
-    padding: 1.1rem 1.4rem;
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    text-decoration: none;
-    color: var(--text);
-    font-family: 'Space Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.05em;
-    transition: all 0.2s;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-  .contact-link:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    box-shadow: var(--glow);
-  }
-  .contact-link-icon {
-    font-size: 1.1rem;
-    flex-shrink: 0;
-  }
-  .availability {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--accent3);
-    border-radius: 4px;
-    padding: 1.4rem 1.8rem;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--muted);
-    line-height: 1.8;
-    letter-spacing: 0.04em;
-  }
-  .availability strong { color: var(--accent3); }
-
-  /* FOOTER */
-  footer {
-    padding: 2rem 4rem;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: var(--bg);
-  }
-  .footer-copy {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--muted);
-    letter-spacing: 0.08em;
-  }
-  .footer-links { display: flex; gap: 1.5rem; }
-  .footer-links a {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--muted);
-    text-decoration: none;
-    letter-spacing: 0.08em;
-    transition: color 0.2s;
-  }
-  .footer-links a:hover { color: var(--accent); }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
-
-  /* Scroll reveal */
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* MOBILE */
-  @media (max-width: 900px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { gap: 1.5rem; }
-    section { padding: 4rem 1.5rem; }
-    .hero { padding: 7rem 1.5rem 4rem; }
-    .hero-photo-wrap { display: none; }
-    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
-    footer { flex-direction: column; gap: 1rem; text-align: center; }
-  }
+    transition: width 0.3s ease;
+  }
+  .nav-link:hover::after { width: 100%; }
+  .pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border: 1px solid var(--border-subtle); border-radius: 999px; font-size: 11px; font-weight: 500; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace; letter-spacing: 0.02em; }
+  .pill-accent { border-color: var(--accent-strong); color: var(--accent); }
+  .tech-tag { display: inline-block; padding: 3px 9px; background: var(--bg-elev-2); border: 1px solid var(--border-subtle); border-radius: 4px; font-size: 11px; font-family: 'JetBrains Mono', monospace; color: var(--text-secondary); letter-spacing: 0.01em; }
+  .placeholder-img { background: linear-gradient(135deg, #1a1816 0%, #221f1c 100%); border: 1px dashed rgba(200, 121, 74, 0.25); display: flex; align-items: center; justify-content: center; color: var(--text-tertiary); font-family: 'JetBrains Mono', monospace; font-size: 11px; text-align: center; padding: 1rem; }
+  .modal-backdrop { background: rgba(15, 14, 12, 0.85); backdrop-filter: blur(8px); }
+  .scroll-lock { overflow: hidden; }
+  .arrow-link { display: inline-flex; align-items: center; gap: 6px; transition: gap 0.2s ease; }
+  .arrow-link:hover { gap: 10px; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: var(--bg-base); }
+  ::-webkit-scrollbar-thumb { background: var(--bg-elev-2); border-radius: 6px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--border-strong); }
 </style>
 </head>
 <body>
+<div id="root"></div>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
+<script type="text/babel" data-presets="env,react">
+const { useState, useEffect, useRef } = React;
 
-<!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo">MH.ENG</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
-
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-
-  <div class="hero-tag">Embedded Systems · IoT · Firmware · Drone/UAV</div>
-
-  <h1 class="hero-name">
-    Muhammad<br><span>Haseeb</span>
-  </h1>
-
-  <p class="hero-title">
-    <strong>Electrical Engineer</strong> with 4+ years at the intersection of<br>
-    hardware and software. M.Sc. IT @ TH OWL, Germany.
-  </p>
-
-  <p class="hero-location">Lemgo, North Rhine-Westphalia, Germany</p>
-
-  <div class="hero-btns">
-    <a href="#contact" class="btn btn-primary">Get In Touch</a>
-    <a href="https://linkedin.com/in/haseeb6902" target="_blank" class="btn btn-ghost">LinkedIn ↗</a>
-    <a href="https://github.com/haseeb-engr" target="_blank" class="btn btn-ghost">GitHub ↗</a>
-  </div>
-
-  <!-- Photo slot — replace src with your photo -->
-  <div class="hero-photo-wrap">
-    <img src="photo.png" alt="Muhammad Haseeb" class="hero-photo">
-    <div class="status-badge">
-      <span class="status-dot"></span>
-      Open to Work
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-label">About</div>
-  <h2 class="section-title reveal">Who I Am</h2>
-
-  <div class="about-grid">
-    <div class="about-text reveal">
-      <p>
-        I am an <strong>Electrical Engineer</strong> with a specialisation in
-        <em>Electronics</em>, currently completing my
-        <strong>Master of Science in Information Technology</strong> at
-        TH OWL (Lemgo, Germany).
-      </p>
-      <p>
-        My work lives at the intersection of <em>hardware and software</em> —
-        from building <strong>IoT lab infrastructure</strong> and real-time
-        <strong>MQTT dashboards</strong> at the Institut für Energieforschung,
-        to integrating <em>drone avionics</em> and developing
-        <strong>firmware for embedded controllers</strong> at PNEC NUST.
-      </p>
-      <p>
-        I am driven by the challenge of making hardware and software systems
-        work together seamlessly — delivering practical, real-world solutions
-        for industrial and research environments.
-      </p>
-      <p style="margin-top:1.5rem;">
-        🇩🇪 Based in Germany since Oct 2023 &nbsp;·&nbsp;
-        🛩️ Drone Pilot A1/A3 (LBA) &nbsp;·&nbsp;
-        🚗 EU Driving License
-      </p>
-    </div>
-
-    <div class="about-stats reveal">
-      <div class="stat-card">
-        <div class="stat-num">4+</div>
-        <div class="stat-label">Years of Engineering Experience</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">3</div>
-        <div class="stat-label">Countries & Research Institutions</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">M.Sc.</div>
-        <div class="stat-label">IT @ TH OWL<br>Lemgo, Germany</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">B.Eng.</div>
-        <div class="stat-label">Electrical & Electronics<br>PAF-KIET, Pakistan</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-label">Skills</div>
-  <h2 class="section-title reveal">Tech Stack</h2>
-
-  <div class="skills-grid">
-    <div class="skill-group reveal">
-      <div class="skill-group-title">⌨️ Languages</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">C</span>
-        <span class="skill-tag">C++</span>
-        <span class="skill-tag">SQL</span>
-        <span class="skill-tag">MATLAB</span>
-        <span class="skill-tag">LabVIEW</span>
-      </div>
-    </div>
-
-    <div class="skill-group reveal">
-      <div class="skill-group-title">📡 Protocols & Connectivity</div>
-      <div class="skill-tags">
-        <span class="skill-tag">MQTT</span>
-        <span class="skill-tag">Ethernet</span>
-        <span class="skill-tag">SPI / I2C / UART</span>
-        <span class="skill-tag">CAN Bus</span>
-        <span class="skill-tag">Modbus</span>
-      </div>
-    </div>
-
-    <div class="skill-group reveal">
-      <div class="skill-group-title">🔧 Hardware & Systems</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Embedded Systems</span>
-        <span class="skill-tag">Firmware Dev</span>
-        <span class="skill-tag">Drone / UAV</span>
-        <span class="skill-tag">Avionics</span>
-        <span class="skill-tag">Sensor Integration</span>
-        <span class="skill-tag">Test Automation</span>
-        <span class="skill-tag">Digital Twin</span>
-        <span class="skill-tag">IoT Architecture</span>
-      </div>
-    </div>
-
-    <div class="skill-group reveal">
-      <div class="skill-group-title">🛠️ Tools & Software</div>
-      <div class="skill-tags">
-        <span class="skill-tag">TIA Portal</span>
-        <span class="skill-tag">SolidWorks</span>
-        <span class="skill-tag">Git</span>
-        <span class="skill-tag">CNC</span>
-        <span class="skill-tag">3D Printing</span>
-        <span class="skill-tag">Tkinter / PyQt</span>
-        <span class="skill-tag">SQLite</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="section-label">Experience</div>
-  <h2 class="section-title reveal">Work History</h2>
-
-  <div class="timeline">
-
-    <div class="timeline-item reveal">
-      <div class="timeline-period">
-        <span>Aug 2025 – Feb 2026</span>
-        Lemgo, Germany
-      </div>
-      <div>
-        <div class="timeline-role">Wissenschaftlicher Mitarbeiter</div>
-        <div class="timeline-org">OWL University of Applied Sciences and Arts · TH OWL / iFE</div>
-        <p class="timeline-desc">
-          Research Associate at the Institut für Energieforschung (iFE), leading
-          the digitalization of the DC-Transferzentrum as part of the federally
-          funded TRiNNOVATION OWL project. Developed IoT lab system with MQTT
-          communication, SQL database, Python GUI dashboards, Digital Twin
-          integration, live camera feeds and threshold-based alarm mechanisms.
-        </p>
-        <div class="timeline-tags">
-          <span class="timeline-tag">Python</span>
-          <span class="timeline-tag">MQTT</span>
-          <span class="timeline-tag">SQL</span>
-          <span class="timeline-tag">Digital Twin</span>
-          <span class="timeline-tag">IoT</span>
-          <span class="timeline-tag">GUI</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item reveal">
-      <div class="timeline-period">
-        <span>Feb 2024 – Aug 2025</span>
-        Lemgo, Germany
-      </div>
-      <div>
-        <div class="timeline-role">Wissenschaftliche Hilfskraft</div>
-        <div class="timeline-org">iFE – Institut für Energieforschung · TH OWL · Part-time</div>
-        <p class="timeline-desc">
-          Developed Python GUI for DC wallbox control systems, built Ethernet
-          MQTT server for real-time data communication, and commissioned the
-          EVCS Cube EV charging infrastructure at the Fachbereich
-          Leistungselektronik.
-        </p>
-        <div class="timeline-tags">
-          <span class="timeline-tag">Python</span>
-          <span class="timeline-tag">MQTT</span>
-          <span class="timeline-tag">Tkinter</span>
-          <span class="timeline-tag">EVCS</span>
-          <span class="timeline-tag">DC Systems</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item reveal">
-      <div class="timeline-period">
-        <span>Jan 2022 – Jun 2023</span>
-        Karachi, Pakistan
-      </div>
-      <div>
-        <div class="timeline-role">Hardware-Software Integration Engineer & Research Officer</div>
-        <div class="timeline-org">National University of Sciences and Technology (NUST) · PNEC</div>
-        <p class="timeline-desc">
-          Drone avionics integration for fixed-wing and rotary-wing UAVs,
-          development of mini jet engine test benches, firmware programming for
-          embedded controllers, system testing and hardware-software validation
-          at the NDT & Reliability Engineering Research Center.
-        </p>
-        <div class="timeline-tags">
-          <span class="timeline-tag">C/C++</span>
-          <span class="timeline-tag">Firmware</span>
-          <span class="timeline-tag">UAV/Drone</span>
-          <span class="timeline-tag">Avionics</span>
-          <span class="timeline-tag">Test Bench</span>
-          <span class="timeline-tag">CNC · 3D Print</span>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-label">Contact</div>
-  <h2 class="section-title reveal">Get In Touch</h2>
-
-  <div class="contact-inner">
-    <p class="contact-intro reveal">
-      I am actively looking for <strong>Werkstudent, part-time, or full-time
-      roles</strong> in Embedded Systems, IoT, Firmware Development,
-      Test Engineering, or Drone/UAV Engineering in the
-      <strong>Lemgo / OWL region or remote</strong>.
-    </p>
-
-    <div class="contact-links reveal">
-      <a href="mailto:m@engrhaseeb.de" class="contact-link">
-        <span class="contact-link-icon">📧</span>
-        m@engrhaseeb.de
-      </a>
-      <a href="https://linkedin.com/in/haseeb6902" target="_blank" class="contact-link">
-        <span class="contact-link-icon">💼</span>
-        linkedin.com/in/haseeb6902
-      </a>
-      <a href="https://github.com/haseeb-engr" target="_blank" class="contact-link">
-        <span class="contact-link-icon">💻</span>
-        github.com/haseeb-engr
-      </a>
-      <a href="tel:+4917345470657" class="contact-link">
-        <span class="contact-link-icon">📱</span>
-        +49 173 4547065
-      </a>
-    </div>
-
-    <div class="availability reveal">
-      <strong>Open to:</strong> Werkstudent · Teilzeit · Vollzeit · Remote<br>
-      <strong>Location:</strong> Lemgo, NRW, Germany (own car + EU license)<br>
-      <strong>Languages:</strong> English C1 · German A2 (actively studying) · Urdu native<br>
-      <strong>Licenses:</strong> Drone Pilot A1/A3 (LBA Germany)
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <span class="footer-copy">© 2025 Muhammad Haseeb · m@engrhaseeb.de</span>
-  <div class="footer-links">
-    <a href="https://linkedin.com/in/haseeb6902" target="_blank">LinkedIn</a>
-    <a href="https://github.com/haseeb-engr" target="_blank">GitHub</a>
-    <a href="mailto:m@engrhaseeb.de">Email</a>
-  </div>
-</footer>
-
-<script>
-  // Custom cursor
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-  function animCursor() {
-    cursor.style.left = mx + 'px';
-    cursor.style.top = my + 'px';
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-    ring.style.left = rx + 'px';
-    ring.style.top = ry + 'px';
-    requestAnimationFrame(animCursor);
+const content = {
+  en: {
+    nav: { about: "About", experience: "Experience", projects: "Projects", contact: "Contact" },
+    hero: {
+      tagline: "Embedded Systems & IoT Engineer",
+      location: "Lemgo, North Rhine-Westphalia, Germany",
+      headline: "Bridging hardware and software, from concept to deployment.",
+      intro: "TH OWL researcher with shipped products in real customers' hands. Building modern embedded systems where firmware meets cloud, where hardware meets code.",
+      ctaPrimary: "Get in touch",
+      ctaSecondary: "View projects",
+      pillResearch: "Researcher at iFE TH OWL",
+      pillExperience: "4+ years engineering",
+      pillProducts: "8 shipped products"
+    },
+    about: {
+      title: "About",
+      kicker: "The story",
+      p1: "I am an Electrical Engineer with a specialisation in Electronics, currently completing my M.Sc. Information Technology at TH OWL (Lemgo, Germany) and entering my thesis phase.",
+      p2: "My engineering work sits at the intersection of hardware and software. I have built IoT lab infrastructure for federally funded research at the Institut für Energieforschung, integrated drone avionics at PNEC NUST in Pakistan, and shipped firmware end-to-end for embedded products including a hospital nurse-call system deployed at Hashim Medical City, an IoT fuel dispenser pilot for Daraz Pakistan, and an EV charger monitoring system on a Beckhoff industrial controller.",
+      p3: "I moved from Karachi to Lemgo in October 2023 to pursue my Master's. The OWL region's density of industrial engineering (Phoenix Contact, KEB, Lenze, Weidmüller, Wago, Beckhoff and many more) is one of the reasons I chose TH OWL. It is one of the most concentrated embedded and automation ecosystems in Europe, and I want to build my career here.",
+      p4: "Outside the lab, I run a YouTube channel called Bin Rao where I document life in the Lemgo and OWL region: the culture, the landscape, the rhythm of everyday Germany seen from a newcomer's eye. It is my way of giving something back to a region that has welcomed me and my family.",
+      p5: "I live in Lemgo with my wife and our daughter, born here in 2026.",
+      youtubeLabel: "Watch: Lemgo, Where Nature Whispers and History Lives",
+      youtubeChannel: "YouTube channel: @Bin_Rao",
+      facts: [
+        { label: "Based in", value: "Lemgo, NRW, Germany" },
+        { label: "Education", value: "M.Sc. IT, TH OWL (thesis phase)" },
+        { label: "Languages", value: "English C1 · German A2 (B1 in progress) · Urdu native" },
+        { label: "Permits & licenses", value: "Unrestricted work permit · EU driving license · LBA drone pilot A1/A3" }
+      ]
+    },
+    experience: {
+      title: "Experience",
+      kicker: "Where I have worked",
+      roles: [
+        {
+          period: "Aug 2025 – Feb 2026",
+          title: "Wissenschaftlicher Mitarbeiter",
+          subtitle: "Research Associate",
+          org: "Institut für Energieforschung (iFE), TH OWL",
+          location: "Lemgo, Germany",
+          context: "Research project: TRiNNOVATION OWL (funded by the federal-state initiative \"Innovative Hochschule\")",
+          bullets: [
+            "Developed an IoT-based digital laboratory environment with live monitoring, data analysis, and Digital Twin concepts",
+            "Designed and implemented Python GUI dashboards for control and visualization of lab systems via MQTT",
+            "Set up SQL databases for industrial process-data acquisition and analysis",
+            "Integrated cameras, sensors, and IoT components into a unified control system",
+            "Carried out market analysis and selection of IoT hardware and IT services",
+            "Presented project results in TRiNNOVATION OWL network and dialogue formats (DC-Transferzentrum)",
+            "Communicated with stakeholders and end-users from industry and research"
+          ]
+        },
+        {
+          period: "Feb 2024 – Aug 2025",
+          title: "Wissenschaftliche Hilfskraft",
+          subtitle: "Student Research Assistant",
+          org: "Power Electronics, TH OWL",
+          location: "Lemgo, Germany",
+          context: "Department of Electrical Engineering & Information Technology",
+          bullets: [
+            "Developed a Python GUI for communication with DC wallboxes over Ethernet",
+            "Set up and configured an Ethernet MQTT server for controlling DC charging systems",
+            "Commissioned the EVCS Cube (AC test wallbox): hardware-software integration and system testing",
+            "Communication tests and interface validation for EV charging systems",
+            "Prepared technical documentation and test protocols"
+          ]
+        },
+        {
+          period: "Jan 2022 – Jun 2023",
+          title: "Hardware Design Engineer & Research Officer",
+          subtitle: "",
+          org: "NDT & Reliability Engineering Research Center, PNEC NUST",
+          location: "Karachi, Pakistan",
+          context: "National University of Sciences and Technology",
+          bullets: [
+            "Avionics integration into fixed-wing and rotary-wing UAVs (Pixhawk, ArduPilot, MAVLink): from system design through commissioning and flight testing as a certified drone pilot",
+            "Design, fabrication, and testing of multilayer PCBs with SMT and THT assembly",
+            "Development of test benches for performance evaluation of mini jet engines",
+            "Programming of a Siemens S7-1200 launcher automation system in TIA Portal",
+            "Firmware development for embedded systems and hardware controllers (STM32, ATmega328)",
+            "System testing, fault diagnosis, and validation of hardware-software systems",
+            "Rapid prototyping: CNC operations, 3D printing, mechanical and electronic integration",
+            "Stakeholder coordination for effective information exchange and project documentation"
+          ]
+        }
+      ]
+    },
+    projects: {
+      title: "Projects",
+      kicker: "Shipped work",
+      intro: "Eight projects spanning research at TH OWL, industrial work in Pakistan, and end-to-end product development. Each one shipped, deployed, or demonstrated in a real environment.",
+      closeLabel: "Close",
+      stackLabel: "Stack",
+      teamLabel: "Team",
+      outcomeLabel: "Outcome",
+      contributionsLabel: "What I built",
+      photoLabel: "Photos & video"
+    },
+    contact: {
+      title: "Get in touch",
+      kicker: "Let's work together",
+      intro: "Open to Werkstudent, Abschlussarbeit (Master thesis), part-time, and full-time roles in Lemgo / OWL region or remote-friendly. Always happy to talk embedded systems, IoT, hardware-software integration, and the OWL engineering ecosystem.",
+      emailLabel: "Email",
+      phoneLabel: "Phone",
+      locationLabel: "Location",
+      linkedinLabel: "LinkedIn",
+      githubLabel: "GitHub",
+      youtubeLabel: "YouTube",
+      availability: "Available for new opportunities"
+    },
+    footer: {
+      rights: "All rights reserved.",
+      built: "Built with React, Tailwind, and care in Lemgo."
+    }
+  },
+  de: {
+    nav: { about: "Über mich", experience: "Erfahrung", projects: "Projekte", contact: "Kontakt" },
+    hero: {
+      tagline: "Embedded Systems & IoT Engineer",
+      location: "Lemgo, Nordrhein-Westfalen, Deutschland",
+      headline: "Brücke zwischen Hardware und Software, vom Konzept bis zum Einsatz.",
+      intro: "Forscher an der TH OWL mit ausgelieferten Produkten bei echten Kunden. Ich entwickle moderne eingebettete Systeme, wo Firmware auf Cloud trifft, wo Hardware auf Code trifft.",
+      ctaPrimary: "Kontakt aufnehmen",
+      ctaSecondary: "Projekte ansehen",
+      pillResearch: "Forscher am iFE TH OWL",
+      pillExperience: "4+ Jahre Erfahrung",
+      pillProducts: "8 ausgelieferte Produkte"
+    },
+    about: {
+      title: "Über mich",
+      kicker: "Meine Geschichte",
+      p1: "Ich bin Elektroingenieur mit Schwerpunkt Elektronik und schließe derzeit meinen M.Sc. Information Technology an der TH OWL (Lemgo) ab. Ich beginne die Thesis-Phase.",
+      p2: "Meine Arbeit liegt an der Schnittstelle zwischen Hardware und Software. Am Institut für Energieforschung habe ich IoT-Laborinfrastruktur für ein bundesgefördertes Forschungsprojekt aufgebaut, bei PNEC NUST in Pakistan Drohnenavionik integriert und Firmware für eingebettete Produkte vollständig entwickelt: ein Krankenhaus-Schwesternruf-System im Hashim Medical City, ein IoT-Tankstellen-Pilotsystem für Daraz Pakistan und ein EV-Charger-Monitoring-System auf einem Beckhoff Industrierechner.",
+      p3: "Im Oktober 2023 bin ich von Karatschi nach Lemgo gezogen, um meinen Master zu machen. Die Dichte der Industrietechnik in OWL (Phoenix Contact, KEB, Lenze, Weidmüller, Wago, Beckhoff und viele andere) war einer der Gründe für meine Wahl der TH OWL. OWL ist eines der dichtesten Embedded- und Automatisierungs-Ökosysteme Europas, und hier möchte ich meine Karriere aufbauen.",
+      p4: "Neben dem Labor betreibe ich einen YouTube-Kanal namens Bin Rao, auf dem ich das Leben in Lemgo und der Region OWL dokumentiere: die Kultur, die Landschaft, den Alltag in Deutschland aus Sicht eines Zugezogenen. Es ist meine Art, der Region etwas zurückzugeben, die mich und meine Familie aufgenommen hat.",
+      p5: "Ich lebe mit meiner Frau und unserer 2026 in Deutschland geborenen Tochter in Lemgo.",
+      youtubeLabel: "Ansehen: Lemgo, wo die Natur flüstert und die Geschichte lebt",
+      youtubeChannel: "YouTube-Kanal: @Bin_Rao",
+      facts: [
+        { label: "Wohnort", value: "Lemgo, NRW, Deutschland" },
+        { label: "Studium", value: "M.Sc. IT, TH OWL (Thesis-Phase)" },
+        { label: "Sprachen", value: "Englisch C1 · Deutsch A2 (B1 in Vorbereitung) · Urdu Muttersprache" },
+        { label: "Erlaubnisse & Lizenzen", value: "Uneingeschränkte Arbeitserlaubnis · EU-Führerschein · LBA-Drohnenführerschein A1/A3" }
+      ]
+    },
+    experience: {
+      title: "Erfahrung",
+      kicker: "Wo ich gearbeitet habe",
+      roles: [
+        {
+          period: "Aug 2025 – Feb 2026",
+          title: "Wissenschaftlicher Mitarbeiter",
+          subtitle: "",
+          org: "Institut für Energieforschung (iFE), TH OWL",
+          location: "Lemgo, Deutschland",
+          context: "Forschungsprojekt: TRiNNOVATION OWL (gefördert durch Bund-Länder-Initiative \"Innovative Hochschule\")",
+          bullets: [
+            "Entwicklung eines IoT-basierten digitalen Laborumfelds mit Live-Monitoring, Datenanalyse und Digital-Twin-Konzepten",
+            "Konzeption und Implementierung von Python-GUI-Dashboards zur Steuerung und Visualisierung von Laborsystemen (MQTT-Protokoll)",
+            "Aufbau von SQL-Datenbanken zur Erfassung und Auswertung von Prozessdaten",
+            "Integration von Kameras, Sensoren und IoT-Komponenten in ein einheitliches Steuerungssystem",
+            "Marktanalyse und Auswahl geeigneter IoT-Hardware und IT-Services",
+            "Präsentation der Projektergebnisse in Netzwerk- und Austauschveranstaltungen (DC-Transferzentrum)",
+            "Kommunikation mit Stakeholdern und Anwendern aus Industrie und Wissenschaft"
+          ]
+        },
+        {
+          period: "Feb 2024 – Aug 2025",
+          title: "Wissenschaftliche Hilfskraft",
+          subtitle: "",
+          org: "Leistungselektronik, TH OWL",
+          location: "Lemgo, Deutschland",
+          context: "Fachbereich Elektrotechnik & Technische Informatik",
+          bullets: [
+            "Entwicklung einer Python-GUI für die Kommunikation mit DC-Wallboxen über Ethernet-Schnittstelle",
+            "Aufbau und Konfiguration eines Ethernet-MQTT-Servers zur Steuerung von DC-Ladesystemen",
+            "Inbetriebnahme des EVCS Cube (AC-Testwallbox): Hardware-Software-Integration und Systemtest",
+            "Kommunikationstests und Schnittstellen-Validierung der EV-Ladesysteme",
+            "Erstellung technischer Dokumentationen und Testprotokolle"
+          ]
+        },
+        {
+          period: "Jan 2022 – Jun 2023",
+          title: "Hardware Design Engineer & Research Officer",
+          subtitle: "",
+          org: "NDT & Reliability Engineering Research Center, PNEC NUST",
+          location: "Karatschi, Pakistan",
+          context: "National University of Sciences and Technology",
+          bullets: [
+            "Avionik-Integration in Starrflügler- und Drehflügler-Drohnen (Pixhawk, ArduPilot, MAVLink): von der Systemauslegung bis zur Inbetriebnahme und Flugerprobung als zertifizierter Drohnenpilot",
+            "Entwurf, Fertigung und Test von mehrlagigen Leiterplatten (Multilayer-PCB) inklusive SMT- und THT-Bestückung",
+            "Entwicklung von Prüfständen zur Leistungsbewertung von Mini-Jet-Triebwerken",
+            "Programmierung einer Launcher-Automatisierung mit Siemens S7-1200 in TIA Portal",
+            "Firmware-Entwicklung für eingebettete Systeme und Hardwaresteuerungen (STM32, ATmega328)",
+            "Systemtests, Fehlerdiagnose und Validierung von Hardware-Software-Systemen",
+            "Rapid Prototyping: CNC-Operationen, 3D-Druck, mechanische und elektronische Integration",
+            "Koordination mit Stakeholdern für effizienten Informationsaustausch und Projektdokumentation"
+          ]
+        }
+      ]
+    },
+    projects: {
+      title: "Projekte",
+      kicker: "Ausgelieferte Arbeit",
+      intro: "Acht Projekte aus Forschung an der TH OWL, Industriearbeit in Pakistan und Produktentwicklung von Anfang bis Ende. Jedes davon ausgeliefert, eingesetzt oder in einer realen Umgebung demonstriert.",
+      closeLabel: "Schließen",
+      stackLabel: "Technologien",
+      teamLabel: "Team",
+      outcomeLabel: "Ergebnis",
+      contributionsLabel: "Mein Beitrag",
+      photoLabel: "Fotos & Video"
+    },
+    contact: {
+      title: "Kontakt",
+      kicker: "Lass uns zusammenarbeiten",
+      intro: "Offen für Werkstudent, Abschlussarbeit, Teilzeit- und Vollzeitstellen im Raum Lemgo / OWL oder remote-freundlich. Immer gerne Gespräche über Embedded Systems, IoT, Hardware-Software-Integration und das OWL-Engineering-Ökosystem.",
+      emailLabel: "E-Mail",
+      phoneLabel: "Telefon",
+      locationLabel: "Ort",
+      linkedinLabel: "LinkedIn",
+      githubLabel: "GitHub",
+      youtubeLabel: "YouTube",
+      availability: "Verfügbar für neue Möglichkeiten"
+    },
+    footer: {
+      rights: "Alle Rechte vorbehalten.",
+      built: "Erstellt mit React, Tailwind und Sorgfalt in Lemgo."
+    }
   }
-  animCursor();
-  document.querySelectorAll('a, button').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.style.width = '18px'; cursor.style.height = '18px';
-      ring.style.width = '55px'; ring.style.height = '55px';
-    });
-    el.addEventListener('mouseleave', () => {
-      cursor.style.width = '10px'; cursor.style.height = '10px';
-      ring.style.width = '36px'; ring.style.height = '36px';
-    });
-  });
+};
 
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        // Stagger children
-        e.target.querySelectorAll('.stat-card, .skill-group, .timeline-item').forEach((child, i) => {
-          child.style.transitionDelay = (i * 0.1) + 's';
-        });
-      }
-    });
-  }, { threshold: 0.12 });
-  reveals.forEach(el => observer.observe(el));
+const projects = [
+  {
+    id: "dc-showroom",
+    en: {
+      title: "DC-Showroom Digitalization",
+      tagline: "TRiNNOVATION OWL · iFE / TH OWL",
+      period: "Aug 2025 – Feb 2026",
+      summary: "Led the digitalization of the DC-Showroom at the DC-Transferzentrum (iFE, TH OWL) as part of the federally funded TRiNNOVATION OWL research project. Transformed a static power-electronics demonstration lab into a connected, monitored, remotely accessible IoT environment.",
+      role: "Project lead. Owned system architecture, requirements definition, data layer, and dashboard implementation (Rust + Tauri + React stack, with AI-assisted implementation).",
+      contributions: [
+        "Translated an open-ended research brief into a concrete IoT system architecture",
+        "Carried out market analysis and selection of IoT components and IT services",
+        "Designed the data layer with SQL databases (SQLite, WAL mode) for live process-data capture",
+        "Designed and implemented MQTT-based communication between distributed IoT nodes and the central data layer",
+        "Architected and shipped a cross-platform desktop dashboard (Tauri 2.0, React 19, TypeScript, Tailwind 4, Rust backend), implementation accelerated with AI-assisted development tooling",
+        "Designed end-user extensibility into the dashboards so future users could adapt views without writing code",
+        "Integrated live camera feeds and threshold-based alarm mechanisms for real-time monitoring",
+        "Documented the system architecture and presented progress in TRiNNOVATION OWL formats"
+      ],
+      outcome: "A working IoT lab infrastructure that turns a static demonstration space into a live, remotely observable research and demonstration platform, handed over for follow-on TRiNNOVATION OWL projects.",
+      stack: ["Rust", "Tauri 2.0", "React 19", "TypeScript", "Tailwind 4", "SQLite WAL", "MQTT", "Python", "IoT architecture"]
+    },
+    de: {
+      title: "DC-Showroom-Digitalisierung",
+      tagline: "TRiNNOVATION OWL · iFE / TH OWL",
+      period: "Aug 2025 – Feb 2026",
+      summary: "Leitung der Digitalisierung des DC-Showrooms am DC-Transferzentrum (iFE, TH OWL) im Rahmen des bundesgeförderten Forschungsprojekts TRiNNOVATION OWL. Umwandlung eines statischen Leistungselektronik-Demonstrationslabors in eine vernetzte, überwachbare und fernzugängliche IoT-Umgebung.",
+      role: "Projektverantwortung. Eigenverantwortung für Systemarchitektur, Anforderungsdefinition, Datenschicht und Dashboard-Implementierung (Rust + Tauri + React Stack, Implementierung KI-unterstützt).",
+      contributions: [
+        "Übersetzung einer offenen Forschungsaufgabe in eine konkrete IoT-Systemarchitektur",
+        "Marktanalyse und Auswahl von IoT-Komponenten und IT-Services",
+        "Entwurf der Datenschicht mit SQL-Datenbanken (SQLite, WAL-Modus) zur Erfassung von Echtzeit-Prozessdaten",
+        "Entwurf und Implementierung der MQTT-basierten Kommunikation zwischen verteilten IoT-Knoten und der zentralen Datenschicht",
+        "Architektur und Auslieferung eines plattformübergreifenden Desktop-Dashboards (Tauri 2.0, React 19, TypeScript, Tailwind 4, Rust-Backend), Implementierung beschleunigt durch KI-gestützte Entwicklungswerkzeuge",
+        "Konzeption von Endnutzer-Erweiterbarkeit, sodass zukünftige Anwender Dashboards ohne Programmierung anpassen können",
+        "Integration von Live-Kamerafeeds und schwellenwertbasierten Alarmmechanismen",
+        "Dokumentation der Systemarchitektur und Präsentation in TRiNNOVATION-OWL-Formaten"
+      ],
+      outcome: "Eine funktionierende IoT-Laborinfrastruktur, die einen statischen Demonstrationsraum in eine lebendige, fernbeobachtbare Forschungs- und Demonstrationsplattform verwandelt, übergeben für Folgeprojekte innerhalb von TRiNNOVATION OWL.",
+      stack: ["Rust", "Tauri 2.0", "React 19", "TypeScript", "Tailwind 4", "SQLite WAL", "MQTT", "Python", "IoT-Architektur"]
+    },
+    photos: ["DC-Showroom lab space", "Tauri dashboard UI", "MQTT data flow architecture"]
+  },
+  {
+    id: "ev-charger",
+    en: {
+      title: "Smart EV Charger Monitoring & Control",
+      tagline: "Beckhoff IPC + MQTT · iFE / TH OWL",
+      period: "iFE / TH OWL",
+      summary: "Industrial IoT integration connecting a Beckhoff IPC (C6920-0060, running TwinCAT 3) with an ambiCHARGE 11 kW EV charger over MQTT, enabling live monitoring, remote control, and data exchange between industrial devices and operator desktops on an isolated smart-energy network.",
+      role: "Designed the integration architecture and built the operator-side desktop applications and broker infrastructure.",
+      contributions: [
+        "Designed the MQTT-based integration architecture connecting the Beckhoff IPC, EV charger, broker, and desktop tools",
+        "Developed two C# desktop applications: AmbiMonitor for live telemetry, graph visualization, and device dashboards; AmbiBroadcaster for manual and scripted MQTT publishing, broker interaction, and troubleshooting",
+        "Designed an extensible MQTT topic structure for multiple industrial subsystems (electricity meters, inverters, EV chargers, electric loads, EMS)",
+        "Configured and deployed a Mosquitto MQTT broker for distributed communication across multiple PCs and industrial devices",
+        "Built a simulated EV-charger test environment for validating communication and control flows without physical hardware",
+        "Validated MQTT flowing through the Beckhoff IPC's TwinCAT 3 environment (TF6701 IoT Communication library)",
+        "Performed end-to-end testing: MQTT topic validation, QoS selection, communication-reliability analysis"
+      ],
+      outcome: "A working end-to-end industrial IoT integration enabling a Beckhoff-controlled EV charger to be live-monitored and remotely operated across the SKIM network, with a reusable broker setup and an extensible topic schema.",
+      stack: ["MQTT", "Mosquitto", "C# (WinForms/WPF)", "Industrial Ethernet", "Beckhoff IPC C6920-0060", "TwinCAT 3", "ambiCHARGE 11 kW", "Industrial IoT"]
+    },
+    de: {
+      title: "Smart EV Charger Monitoring & Steuerung",
+      tagline: "Beckhoff IPC + MQTT · iFE / TH OWL",
+      period: "iFE / TH OWL",
+      summary: "Industrielle IoT-Integration zwischen einem Beckhoff IPC (C6920-0060, TwinCAT 3) und einem ambiCHARGE 11 kW EV-Lader über MQTT. Live-Monitoring, Fernsteuerung und Datenaustausch zwischen Industriegeräten und Betreiberrechnern in einem abgeschotteten Smart-Energy-Netzwerk.",
+      role: "Entwurf der Integrationsarchitektur, Entwicklung der operatorseitigen Desktop-Anwendungen und der Broker-Infrastruktur.",
+      contributions: [
+        "Entwurf der MQTT-basierten Integrationsarchitektur (Beckhoff IPC, EV-Lader, Broker, Desktop-Tools)",
+        "Entwicklung zweier C#-Desktop-Anwendungen: AmbiMonitor für Live-Telemetrie und Visualisierung; AmbiBroadcaster für manuelles und skriptgesteuertes MQTT-Publishing und Troubleshooting",
+        "Entwurf einer erweiterbaren MQTT-Topic-Struktur für mehrere industrielle Subsysteme (Stromzähler, Wechselrichter, EV-Lader, elektrische Lasten, EMS)",
+        "Konfiguration und Bereitstellung eines Mosquitto-MQTT-Brokers für verteilte Kommunikation",
+        "Aufbau einer simulierten EV-Charger-Testumgebung für Validierung ohne physische Hardware",
+        "Validierung der MQTT-Kommunikation durch die TwinCAT-3-Umgebung des Beckhoff IPC (TF6701 IoT Communication Bibliothek)",
+        "End-to-End-Tests: Topic-Validierung, QoS-Auswahl, Kommunikationszuverlässigkeit"
+      ],
+      outcome: "Eine funktionierende End-to-End-Industrie-IoT-Integration mit Live-Monitoring und Fernsteuerung eines Beckhoff-gesteuerten EV-Laders über das SKIM-Netzwerk, mit wiederverwendbarem Broker-Setup und erweiterbarer Topic-Struktur.",
+      stack: ["MQTT", "Mosquitto", "C# (WinForms/WPF)", "Industrial Ethernet", "Beckhoff IPC C6920-0060", "TwinCAT 3", "ambiCHARGE 11 kW", "Industrielle IoT"]
+    },
+    photos: ["Beckhoff IPC setup", "AmbiMonitor dashboard", "ambiCHARGE 11 kW unit"]
+  },
+  {
+    id: "nurse-call",
+    en: {
+      title: "Hospital Nurse Call System",
+      tagline: "Hashim Medical City, Hyderabad",
+      period: "2019 – 2020 · PAF-KIET",
+      summary: "End-to-end embedded hospital call system designed, built, and deployed for operational use at Hashim Medical City (HMC), Hyderabad. Led a 3-person team owning the full product lifecycle from circuit design to field deployment.",
+      role: "Team lead. Owned hardware engineering, PCB design, firmware, RS485 bus implementation, and field deployment.",
+      contributions: [
+        "Circuit design of patient bedside units and the central nurse station unit (ATmega328-based)",
+        "Multilayer PCB design with SMD components, fabricated in China, assembled and tested in-house with SMT and THT hand soldering",
+        "Enclosure design in SolidWorks, CNC-machined externally from acrylic based on my CAD and DXF files",
+        "Firmware in Embedded C for the ATmega328 nodes (call signaling, button debouncing, addressing, status indicators, power management)",
+        "RS485 wired communication bus between bedside units and the nurse station for reliable noise-immune signaling across ward distances",
+        "LabVIEW operator dashboard at the nurse station with live per-room call status, queueing, response tracking",
+        "SQL database logging every call event with timestamps, room IDs, response times",
+        "Email notification service for automatic alerts to nursing staff and administration",
+        "On-site installation at HMC: cabling, addressing nodes on the RS485 bus, commissioning, end-user training"
+      ],
+      outcome: "A working, deployed hospital-grade nurse call system in operational use at HMC Hyderabad. Built from zero to product by a team of three.",
+      stack: ["ATmega328", "Embedded C", "LabVIEW", "SQL", "RS485", "SolidWorks", "Multilayer PCB", "SMT/THT", "SMTP"]
+    },
+    de: {
+      title: "Krankenhaus-Schwesternruf-System",
+      tagline: "Hashim Medical City, Hyderabad",
+      period: "2019 – 2020 · PAF-KIET",
+      summary: "End-to-End-Entwicklung eines eingebetteten Krankenhausrufsystems, ausgeliefert und betrieblich eingesetzt am Hashim Medical City (HMC), Hyderabad. Leitung eines dreiköpfigen Teams über den gesamten Produktlebenszyklus von der Schaltungsentwicklung bis zur Inbetriebnahme vor Ort.",
+      role: "Teamleitung. Verantwortung für Hardwareentwicklung, PCB-Design, Firmware, RS485-Bus-Implementierung und Inbetriebnahme vor Ort.",
+      contributions: [
+        "Schaltungsentwurf der Patientenrufstellen und der zentralen Schwesternstation (ATmega328-basiert)",
+        "Mehrlagiges PCB-Design mit SMD-Bestückung, Fertigung in China, Bestückung und Test im eigenen Labor mit SMT und THT",
+        "Gehäusedesign in SolidWorks, extern CNC-gefräst aus Acryl basierend auf meinen CAD- und DXF-Dateien",
+        "Firmware in Embedded C für die ATmega328-Knoten (Rufsignalisierung, Tasten-Entprellung, Adressierung, Statusanzeigen, Energiemanagement)",
+        "Drahtgebundener RS485-Bus zwischen Patientenstellen und Schwesternstation für zuverlässige, störfeste Übertragung über Stationsdistanzen",
+        "LabVIEW-Operator-Dashboard mit Echtzeit-Statusanzeige je Zimmer, Warteschlange und Reaktionsverfolgung",
+        "SQL-Datenbank zur Protokollierung jedes Rufereignisses mit Zeitstempel, Zimmer-ID und Reaktionszeiten",
+        "E-Mail-Benachrichtigungsdienst für automatische Alarme an Pflegepersonal und Verwaltung",
+        "Inbetriebnahme vor Ort am HMC: Verkabelung, Adressierung der Knoten am RS485-Bus, Schulung der Anwender"
+      ],
+      outcome: "Ein funktionierendes, eingesetztes Schwesternrufsystem in Krankenhausqualität im Betrieb am HMC Hyderabad. Von null bis zum Produkt durch ein Team von drei Personen aufgebaut.",
+      stack: ["ATmega328", "Embedded C", "LabVIEW", "SQL", "RS485", "SolidWorks", "Multilayer-PCB", "SMT/THT", "SMTP"]
+    },
+    photos: ["PCB assembly", "Acrylic enclosure", "Deployment at HMC Hyderabad"]
+  },
+  {
+    id: "ptl-daraz",
+    en: {
+      title: "Put-to-Light Warehouse Sorting System",
+      tagline: "Daraz Pakistan · Pilot Deployment",
+      period: "2020 – 2021 · PAF-KIET",
+      summary: "End-to-end Put-to-Light (PTL) warehouse sorting system developed for a vendor delivering to Daraz Pakistan, designed to accelerate parcel sorting in large e-commerce operations. Pilot trials across multiple Pakistani cities.",
+      role: "Led the hardware-firmware-deployment side of a 5-person team. Owned mechanical design, PCB design, firmware, RS485 protocol, and pilot deployment management.",
+      contributions: [
+        "Project concept and system architecture, translating the manual warehouse sorting workflow into an integrated hardware-software solution",
+        "Circuit and PCB design in Proteus, using the ATmega328 as the node controller, fabricated externally in China and assembled in-house",
+        "Firmware development in Embedded C for the ATmega328 nodes (scan-to-bucket logic, addressing, light-indicator control, bus messaging)",
+        "RS485 communication network connecting scanning units, light-indicator units, and the central display system across each sorting lane",
+        "Light-indicator subsystem with color-coded outputs (red, green, blue) for fast visual sorting feedback",
+        "Mechanical enclosure design in SolidWorks, with acrylic parts CNC-cut by Misa Outsource based on my CAD and DXF files",
+        "Integration of off-the-shelf wireless barcode scanners (Honeywell, Zebra) with the custom hardware backend",
+        "Customer / vendor coordination and pilot deployment management",
+        "Pilot deployment at Daraz warehouses across multiple cities in Pakistan: on-site installation, commissioning, worker training"
+      ],
+      outcome: "A working PTL sorting system piloted in Daraz warehouse operations across several Pakistani cities, validated for speed and accuracy improvements over the prior manual sorting process.",
+      stack: ["ATmega328", "Embedded C", "Proteus", "RS485", "SolidWorks", "Multilayer PCB", "SMT/THT", "Honeywell / Zebra Scanners", "Python (UI by teammate)"]
+    },
+    de: {
+      title: "Put-to-Light Warehouse-Sortiersystem",
+      tagline: "Daraz Pakistan · Pilot-Einsatz",
+      period: "2020 – 2021 · PAF-KIET",
+      summary: "End-to-End-Entwicklung eines Put-to-Light (PTL) Warehouse-Sortiersystems für einen Lieferanten von Daraz Pakistan, zur Beschleunigung der Paketsortierung im großen E-Commerce-Lagerbetrieb. Pilot-Einsatz in mehreren pakistanischen Städten.",
+      role: "Leitung der Hardware-Firmware-Inbetriebnahme-Seite eines fünfköpfigen Teams. Verantwortung für Mechanik, PCB-Design, Firmware, RS485-Protokoll und Pilot-Inbetriebnahme.",
+      contributions: [
+        "Projektkonzept und Systemarchitektur, Übersetzung des manuellen Lagersortier-Workflows in eine integrierte Hardware-Software-Lösung",
+        "Schaltungs- und PCB-Design in Proteus mit ATmega328 als Knoten-Controller, Fertigung in China, Bestückung im eigenen Labor",
+        "Firmware-Entwicklung in Embedded C für die ATmega328-Knoten",
+        "RS485-Kommunikationsnetzwerk zwischen Scan-Einheiten, Lichtanzeigen und zentralem Display je Sortierbahn",
+        "Lichtanzeige-Subsystem mit farbcodierten Ausgaben (rot, grün, blau) für schnelle visuelle Rückmeldung",
+        "Mechanisches Gehäusedesign in SolidWorks, Acrylteile extern CNC-gefräst von Misa Outsource",
+        "Integration handelsüblicher drahtloser Barcode-Scanner (Honeywell, Zebra) mit dem kundenspezifischen Hardware-Backend",
+        "Kunden- und Lieferantenkoordination sowie Pilot-Inbetriebnahmemanagement",
+        "Pilot-Inbetriebnahme in Daraz-Warehouses in mehreren pakistanischen Städten: Installation, Inbetriebnahme, Schulung"
+      ],
+      outcome: "Ein funktionierendes PTL-Sortiersystem im Pilot-Einsatz in Daraz-Warehouse-Operationen in mehreren pakistanischen Städten, validiert für Geschwindigkeits- und Genauigkeitsverbesserungen gegenüber dem vorherigen manuellen Sortierprozess.",
+      stack: ["ATmega328", "Embedded C", "Proteus", "RS485", "SolidWorks", "Multilayer-PCB", "SMT/THT", "Honeywell / Zebra Scanner", "Python (UI durch Teammitglied)"]
+    },
+    photos: ["PTL indicator units", "PCB layout", "Warehouse pilot deployment"]
+  },
+  {
+    id: "wheelchair",
+    en: {
+      title: "Smart Health-Monitoring Wheelchair",
+      tagline: "Multi-disciplinary Embedded Prototype",
+      period: "PAF-KIET",
+      summary: "End-to-end design and development of a smart electric wheelchair prototype combining mobility assistance, basic patient vitals monitoring, IoT-based location tracking, and a medicine reminder system in one integrated platform.",
+      role: "2-person team. Owned electronics, firmware, sensor integration, IoT communication, and mobile-platform integration.",
+      contributions: [
+        "ESP32-based main controller managing motor signals, sensor data, GPS parsing, GSM communication, and Blynk command handling",
+        "Joystick-based manual control wired into the ESP32 for direct mobility control",
+        "Dual BLDC motor drive with motor-driver integration and basic safety logic",
+        "Health monitoring with heart-rate and body-temperature sensors, with live readings streamed over the IoT link",
+        "GPS location tracking feeding position data to the ESP32 for real-time reporting",
+        "GSM cellular IoT communication for telemetry transmission beyond Wi-Fi coverage",
+        "Blynk mobile interface for remote drive commands, live vitals monitoring, and medicine reminder triggering",
+        "Medicine reminder module with onboard pill compartment, LED, and buzzer, triggered through Blynk"
+      ],
+      outcome: "A working prototype integrating electric mobility, embedded control, health sensors, GPS, GSM cellular IoT, mobile-platform integration, and patient assistance into a single multi-disciplinary smart wheelchair system.",
+      stack: ["ESP32", "Embedded C/C++", "Arduino IDE", "BLDC Motors", "GPS", "GSM", "Heart-Rate Sensor", "Blynk IoT Platform"]
+    },
+    de: {
+      title: "Smarter Rollstuhl mit Gesundheitsmonitoring",
+      tagline: "Multidisziplinärer Embedded-Prototyp",
+      period: "PAF-KIET",
+      summary: "End-to-End-Entwicklung eines smarten elektrischen Rollstuhl-Prototyps mit Mobilitätsassistenz, einfacher Patientenvitalüberwachung, IoT-Standortverfolgung und Medikamentenerinnerungssystem in einer integrierten Plattform.",
+      role: "Zweier-Team. Verantwortung für Elektronik, Firmware, Sensorintegration, IoT-Kommunikation und Mobile-Plattform-Integration.",
+      contributions: [
+        "ESP32-Hauptcontroller zur Verwaltung von Motorsignalen, Sensordaten, GPS, GSM-Kommunikation und Blynk-Befehlen",
+        "Joystick-basierte manuelle Steuerung direkt am ESP32",
+        "Doppelter BLDC-Antrieb mit Motortreiber-Integration und Sicherheitslogik",
+        "Gesundheitsüberwachung mit Herzfrequenz- und Körpertemperatursensoren, Live-Übertragung per IoT",
+        "GPS-Standortverfolgung mit Datenübertragung an den ESP32",
+        "GSM-Mobilfunk-IoT-Kommunikation für Telemetrie außerhalb von WLAN-Reichweite",
+        "Blynk-Mobile-Schnittstelle für Fernsteuerung, Vitaldaten-Monitoring und Medikamentenerinnerung",
+        "Medikamentenerinnerungsmodul mit Pillenfach, LED und Buzzer, ausgelöst über Blynk"
+      ],
+      outcome: "Ein funktionierender Prototyp, der elektrische Mobilität, eingebettete Steuerung, Gesundheitssensoren, GPS, GSM-Mobilfunk-IoT, Mobile-Plattform-Integration und Patientenassistenz in einem multidisziplinären Smart-Rollstuhl-System vereint.",
+      stack: ["ESP32", "Embedded C/C++", "Arduino IDE", "BLDC-Motoren", "GPS", "GSM", "Herzfrequenzsensor", "Blynk IoT-Plattform"]
+    },
+    photos: ["Assembled wheelchair prototype", "ESP32 electronics", "Blynk dashboard"]
+  },
+  {
+    id: "robo-war",
+    en: {
+      title: "Robo-War Combat Robots",
+      tagline: "50 kg Winner · 100 kg Runner-up",
+      period: "PAF-KIET",
+      summary: "Designed and built two competition combat robots from scratch for robo-war fighting tournaments: one in the under-50 kg class and one in the under-100 kg class. Owned the full product lifecycle from mechanical design to fabrication, electronics, firmware, and competition operation.",
+      role: "2-person team. Owned mechanical design, electronics, firmware, control system, and project leadership.",
+      contributions: [
+        "Complete mechanical design of both robots in SolidWorks, structured to withstand high-impact collisions in their respective weight classes",
+        "Metal frame fabrication via the university workshop, with hands-on welding contribution on selected joints",
+        "Drive system using DC gear motors with motor-driver selection sized to the robot mass",
+        "Weapon mechanism using a high-RPM gear motor for strong rotational force",
+        "Primary control: RF/NRF-based remote with a custom receiver module",
+        "Backup control: Bluetooth-based Android control via Blynk, built as a redundant secondary method",
+        "Power and electrical layout: battery sizing, motor wiring, on-board electronics housing",
+        "Competition operation: pre-match setup, in-match remote operation, post-match damage repair"
+      ],
+      outcome: "Won 1st place in the under-50 kg category. Runner-up in the under-100 kg category. Both robots competed reliably in real tournaments.",
+      stack: ["SolidWorks", "Metal Fabrication & Welding", "DC Gear Motors", "Motor Drivers", "RF/NRF Remote", "Bluetooth", "Blynk", "Embedded C", "Arduino IDE"]
+    },
+    de: {
+      title: "Robo-War-Kampfroboter",
+      tagline: "50 kg Sieger · 100 kg Vize",
+      period: "PAF-KIET",
+      summary: "Design und Bau zweier Kampfroboter für Robo-War-Turniere von Grund auf: einer in der Klasse unter 50 kg, einer in der Klasse unter 100 kg. Eigenverantwortung für den gesamten Produktlebenszyklus von Mechanikdesign über Fertigung, Elektronik, Firmware bis hin zum Wettkampfbetrieb.",
+      role: "Zweier-Team. Verantwortung für Mechanikdesign, Elektronik, Firmware, Steuerung und Projektleitung.",
+      contributions: [
+        "Vollständiges Mechanikdesign beider Roboter in SolidWorks, ausgelegt für Hochaufprall-Kollisionen in ihren jeweiligen Gewichtsklassen",
+        "Fertigung der Metallrahmen über die Universitätswerkstatt mit eigener Schweißbeteiligung an ausgewählten Verbindungen",
+        "Antriebssystem mit DC-Getriebemotoren und passender Motortreiber-Auswahl je Robotermasse",
+        "Waffenmechanismus mit Hochdrehzahl-Getriebemotor für starke Rotationskraft",
+        "Hauptsteuerung: RF/NRF-Fernbedienung mit kundenspezifischem Empfängermodul",
+        "Backup-Steuerung: Bluetooth-Android-Steuerung über Blynk als redundante Alternative",
+        "Strom- und Verkabelungslayout: Batterieauslegung, Motorverkabelung, Bordelektronikgehäuse",
+        "Wettkampfbetrieb: Vorbereitung, Fernsteuerung im Match, Reparaturen zwischen den Runden"
+      ],
+      outcome: "1. Platz in der Klasse unter 50 kg. Vize in der Klasse unter 100 kg. Beide Roboter haben zuverlässig in echten Turnieren bestanden.",
+      stack: ["SolidWorks", "Metallbau & Schweißen", "DC-Getriebemotoren", "Motortreiber", "RF/NRF-Fernbedienung", "Bluetooth", "Blynk", "Embedded C", "Arduino IDE"]
+    },
+    photos: ["50 kg robot in arena", "100 kg robot assembled", "Welded chassis"]
+  },
+  {
+    id: "ros-robot",
+    en: {
+      title: "ROS-Based Vision-Guided Mobile Robot Platform",
+      tagline: "IGNITE-Recognized Semester Project",
+      period: "Feb 2019 – Sep 2019 · PAF-KIET",
+      summary: "Designed and built a four-wheeled ROS-based mobile robot research platform with vision-guided pan/tilt tracking, as a semester project at PAF-KIET.",
+      role: "3-person team. Team Lead. Owned system architecture, mechanical design, electronics, custom PCB, ROS integration, Arduino firmware, and full system integration.",
+      contributions: [
+        "Four-wheeled mobile platform with BLDC hub-wheel drive, 350 W motor drivers, custom metal frame designed in SolidWorks and fabricated at the university workshop",
+        "Compute architecture with a Raspberry Pi 3 running ROS on Linux and an Arduino Mega 2560 for real-time motor and sensor I/O, over serial",
+        "Custom motherboard PCB, fabricated externally and assembled in-house, integrating sensors, motor drivers, and power distribution",
+        "ROS environment on the Raspberry Pi with custom nodes for camera input, motor command translation, and remote-control handling",
+        "Computer-vision tracking using a Pixy 2 CMUcam5 for color-based object detection, feeding coordinates into the actuator control loop",
+        "2-axis vision-guided pan/tilt with servo-driven positioning controlled by the vision pipeline",
+        "2.4 GHz RF remote control for manual operation, with optional handover to vision-guided mode"
+      ],
+      outcome: "A working mobile robotics demonstrator integrating ROS, computer vision, and embedded control. The research proposal received proposal-level approval from IGNITE (National Technology Fund, Government of Pakistan).",
+      stack: ["ROS", "Raspberry Pi 3", "Arduino Mega 2560", "Embedded C/C++", "Python", "Pixy 2 CMUcam5", "BLDC Wheels", "Servo Motors", "SolidWorks", "Custom PCB"]
+    },
+    de: {
+      title: "ROS-basierte visionsgesteuerte Mobile-Roboter-Plattform",
+      tagline: "IGNITE-anerkanntes Semesterprojekt",
+      period: "Feb 2019 – Sep 2019 · PAF-KIET",
+      summary: "Entwurf und Bau einer vierrädrigen ROS-basierten Mobilen-Roboter-Forschungsplattform mit visionsgesteuerter Pan-Tilt-Verfolgung als Semesterprojekt an der PAF-KIET.",
+      role: "Dreier-Team. Teamleitung. Verantwortung für Systemarchitektur, Mechanikdesign, Elektronik, kundenspezifische PCB, ROS-Integration, Arduino-Firmware und Systemintegration.",
+      contributions: [
+        "Vierrädrige Mobile-Plattform mit BLDC-Hub-Wheel-Antrieb, 350-W-Motortreibern und kundenspezifischem Metallrahmen (SolidWorks, Universitätswerkstatt)",
+        "Compute-Architektur mit Raspberry Pi 3 (ROS auf Linux) und Arduino Mega 2560 für Echtzeit-Motor- und Sensor-I/O über serielle Verbindung",
+        "Kundenspezifisches Mainboard-PCB, extern gefertigt und im eigenen Labor bestückt",
+        "ROS-Umgebung auf dem Raspberry Pi mit eigenen Nodes für Kameraeingabe, Motorbefehlsübersetzung und Fernsteuerung sowie Integration bestehender ROS-Pakete",
+        "Computer-Vision-Tracking mit Pixy 2 CMUcam5 zur farbbasierten Objekterkennung, mit Koordinatenübergabe an die Aktor-Regelschleife",
+        "Zweiachsige visionsgesteuerte Pan-Tilt-Positionierung mit Servoantrieb",
+        "2,4-GHz-RF-Fernsteuerung für manuellen Betrieb mit optionaler Übergabe an den visionsgesteuerten Modus"
+      ],
+      outcome: "Ein funktionierender Mobile-Robotics-Demonstrator mit Integration von ROS, Computer Vision und Embedded Control. Der Forschungsantrag erhielt Vorschlagsebenen-Genehmigung von IGNITE (National Technology Fund, Regierung von Pakistan).",
+      stack: ["ROS", "Raspberry Pi 3", "Arduino Mega 2560", "Embedded C/C++", "Python", "Pixy 2 CMUcam5", "BLDC-Räder", "Servomotoren", "SolidWorks", "Eigene PCB"]
+    },
+    photos: ["Mobile platform assembled", "Pixy 2 vision module", "Team at presentation"]
+  },
+  {
+    id: "disinfectant",
+    en: {
+      title: "Automatic Disinfectant Walkthrough Gate",
+      tagline: "COVID-19 Response · Deployed",
+      period: "2020 · PAF-KIET",
+      summary: "Sensor-triggered automatic disinfectant walkthrough gate designed and deployed during the COVID-19 pandemic to spray sanitizing disinfectant on people entering or leaving controlled areas. Installed at an academy, a mosque, and several companies.",
+      role: "2-person project. Owned the electronics, firmware, and integration.",
+      contributions: [
+        "Sharp IR sensor array at the gate entry, detecting human presence and motion",
+        "ATmega-based control (Arduino-style) reading the IR sensor signal and activating the pump on trigger",
+        "Pump and sprinkler subsystem using off-the-shelf garden / agricultural sprinkler hardware, with on-board tank and multiple nozzles around the gate frame for omnidirectional spray",
+        "Mechanical gate structure and electronics enclosure designed for repeated use in semi-public environments",
+        "On-site installation and commissioning at each deployment location, with end-user handover"
+      ],
+      outcome: "A working, deployed sanitization system in operational use at multiple sites (academy, mosque, corporate facilities) during the COVID-19 period.",
+      stack: ["ATmega (Arduino-style)", "Embedded C", "Arduino IDE", "Sharp IR Sensors", "Pump & Spray System", "Sensor Integration"]
+    },
+    de: {
+      title: "Automatisches Desinfektionsdurchgangstor",
+      tagline: "COVID-19-Antwort · Im Einsatz",
+      period: "2020 · PAF-KIET",
+      summary: "Sensorgesteuertes automatisches Desinfektionstor, entworfen und während der COVID-19-Pandemie eingesetzt, um Personen beim Betreten oder Verlassen kontrollierter Bereiche zu desinfizieren. Installiert in einer Akademie, einer Moschee und mehreren Unternehmen.",
+      role: "Zweier-Projekt. Verantwortung für Elektronik, Firmware und Integration.",
+      contributions: [
+        "Sharp-IR-Sensor-Array am Tor zur Erkennung von Personen und Bewegung",
+        "ATmega-basierte Steuerung (Arduino-Stil) zur Auswertung der IR-Sensorsignale und Aktivierung der Pumpe",
+        "Pump- und Sprühsystem mit handelsüblicher Garten-/Agrarsprinklerhardware, Onboard-Tank und mehreren Düsen rund um den Torrahmen für omnidirektionale Sprühabdeckung",
+        "Mechanische Torkonstruktion und Elektronikgehäuse für wiederholten Einsatz im halböffentlichen Umfeld",
+        "Vor-Ort-Installation und Inbetriebnahme an jedem Einsatzort mit Übergabe an den Endnutzer"
+      ],
+      outcome: "Ein funktionierendes, eingesetztes Desinfektionssystem im laufenden Betrieb an mehreren Standorten (Akademie, Moschee, Firmen) während der COVID-19-Periode.",
+      stack: ["ATmega (Arduino-Stil)", "Embedded C", "Arduino IDE", "Sharp-IR-Sensoren", "Pumpen- & Sprühsystem", "Sensorintegration"]
+    },
+    photos: ["Gate at academy deployment", "Control electronics", "Spray nozzle arrangement"]
+  }
+];
 
-  // Nav active state on scroll
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 200) current = s.id;
-    });
-    navLinks.forEach(a => {
-      a.style.color = a.getAttribute('href') === '#' + current
-        ? 'var(--accent)' : '';
-    });
-  });
+function useScrollFade() {
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.fade-up').forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+}
+
+function Header({ lang, setLang }) {
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const t = content[lang];
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 30);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navStyle = {
+    position: 'sticky',
+    top: 0,
+    zIndex: 50,
+    transition: 'background 0.3s ease, border-color 0.3s ease',
+    background: scrolled ? 'rgba(15, 14, 12, 0.85)' : 'transparent',
+    backdropFilter: scrolled ? 'blur(12px)' : 'none',
+    borderBottom: scrolled ? '1px solid var(--border-subtle)' : '1px solid transparent'
+  };
+
+  return (
+    <header style={navStyle}>
+      <div className="max-w-6xl mx-auto px-6 lg:px-12 py-5 flex items-center justify-between">
+        <a href="#top" className="flex items-center gap-2.5">
+          <div className="w-8 h-8 flex items-center justify-center" style={{ background: 'var(--accent)', borderRadius: '6px' }}>
+            <span style={{ color: 'var(--bg-base)', fontWeight: 600, fontSize: '14px', fontFamily: 'JetBrains Mono, monospace' }}>MH</span>
+          </div>
+          <span className="font-display text-lg" style={{ letterSpacing: '-0.01em' }}>Muhammad Haseeb</span>
+        </a>
+        <nav className="hidden md:flex items-center gap-8">
+          <a href="#about" className="nav-link text-sm text-secondary">{t.nav.about}</a>
+          <a href="#experience" className="nav-link text-sm text-secondary">{t.nav.experience}</a>
+          <a href="#projects" className="nav-link text-sm text-secondary">{t.nav.projects}</a>
+          <a href="#contact" className="nav-link text-sm text-secondary">{t.nav.contact}</a>
+          <div className="flex items-center gap-1 ml-4 pl-4" style={{ borderLeft: '1px solid var(--border-subtle)' }}>
+            <button
+              onClick={() => setLang('en')}
+              className="text-xs px-2 py-1 font-mono"
+              style={{
+                color: lang === 'en' ? 'var(--accent)' : 'var(--text-tertiary)',
+                fontWeight: lang === 'en' ? 500 : 400,
+                background: 'transparent',
+                border: 'none',
+                cursor: 'pointer'
+              }}
+            >EN</button>
+            <span style={{ color: 'var(--text-tertiary)', fontSize: '11px' }}>/</span>
+            <button
+              onClick={() => setLang('de')}
+              className="text-xs px-2 py-1 font-mono"
+              style={{
+                color: lang === 'de' ? 'var(--accent)' : 'var(--text-tertiary)',
+                fontWeight: lang === 'de' ? 500 : 400,
+                background: 'transparent',
+                border: 'none',
+                cursor: 'pointer'
+              }}
+            >DE</button>
+          </div>
+        </nav>
+        <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden p-2" style={{ background: 'transparent', border: 'none', color: 'var(--text-primary)', cursor: 'pointer' }}>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+            {menuOpen ? <path d="M6 6l12 12M6 18L18 6" /> : <path d="M3 7h18M3 12h18M3 17h18" />}
+          </svg>
+        </button>
+      </div>
+      {menuOpen && (
+        <div className="md:hidden border-t border-subtle bg-elev-1">
+          <div className="px-6 py-4 flex flex-col gap-3">
+            <a href="#about" onClick={() => setMenuOpen(false)} className="text-sm text-secondary py-1">{t.nav.about}</a>
+            <a href="#experience" onClick={() => setMenuOpen(false)} className="text-sm text-secondary py-1">{t.nav.experience}</a>
+            <a href="#projects" onClick={() => setMenuOpen(false)} className="text-sm text-secondary py-1">{t.nav.projects}</a>
+            <a href="#contact" onClick={() => setMenuOpen(false)} className="text-sm text-secondary py-1">{t.nav.contact}</a>
+            <div className="flex gap-3 pt-2 mt-2" style={{ borderTop: '1px solid var(--border-subtle)' }}>
+              <button onClick={() => setLang('en')} className="text-xs font-mono" style={{ color: lang === 'en' ? 'var(--accent)' : 'var(--text-tertiary)', background: 'transparent', border: 'none', cursor: 'pointer' }}>EN</button>
+              <button onClick={() => setLang('de')} className="text-xs font-mono" style={{ color: lang === 'de' ? 'var(--accent)' : 'var(--text-tertiary)', background: 'transparent', border: 'none', cursor: 'pointer' }}>DE</button>
+            </div>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+}
+
+function Hero({ lang }) {
+  const t = content[lang].hero;
+  return (
+    <section id="top" className="relative grid-bg" style={{ borderBottom: '1px solid var(--border-subtle)' }}>
+      <div className="max-w-6xl mx-auto px-6 lg:px-12 pt-16 pb-24 lg:pt-24 lg:pb-32 grid lg:grid-cols-5 gap-12 lg:gap-16 items-center">
+        <div className="lg:col-span-3 fade-up">
+          <div className="flex items-center gap-3 mb-6">
+            <span className="pill pill-accent">
+              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--accent)' }}></span>
+              {t.tagline}
+            </span>
+          </div>
+          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl leading-tight mb-6" style={{ fontWeight: 500 }}>
+            {t.headline}
+          </h1>
+          <p className="text-base md:text-lg text-secondary mb-8 leading-relaxed" style={{ maxWidth: '540px' }}>
+            {t.intro}
+          </p>
+          <div className="flex flex-wrap gap-3 mb-10">
+            <span className="pill">{t.pillResearch}</span>
+            <span className="pill">{t.pillExperience}</span>
+            <span className="pill">{t.pillProducts}</span>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <a href="#contact" className="inline-flex items-center gap-2 px-5 py-3 text-sm font-medium" style={{ background: 'var(--accent)', color: 'var(--bg-base)', borderRadius: '6px' }}>
+              {t.ctaPrimary}
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a href="#projects" className="inline-flex items-center gap-2 px-5 py-3 text-sm font-medium" style={{ color: 'var(--text-primary)', border: '1px solid var(--border-strong)', borderRadius: '6px' }}>
+              {t.ctaSecondary}
+            </a>
+          </div>
+        </div>
+        <div className="lg:col-span-2 fade-up">
+          <div className="relative" style={{ aspectRatio: '4/5' }}>
+            <div className="placeholder-img w-full h-full" style={{ borderRadius: '12px' }}>
+              <div>
+                <div style={{ fontSize: '13px', marginBottom: '4px', color: 'var(--accent)' }}>[Photo]</div>
+                Muhammad Haseeb<br/>professional headshot<br/>(replace with photo.jpg)
+              </div>
+            </div>
+            <div className="absolute -bottom-3 -left-3" style={{ background: 'var(--bg-elev-1)', border: '1px solid var(--border-subtle)', borderRadius: '8px', padding: '10px 14px' }}>
+              <div className="font-mono text-xs text-tertiary mb-0.5">{lang === 'en' ? 'Currently' : 'Aktuell'}</div>
+              <div className="text-sm" style={{ color: 'var(--accent)' }}>M.Sc. IT @ TH OWL</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function About({ lang }) {
+  const t = content[lang].about;
+  return (
+    <section id="about" className="py-20 lg:py-28" style={{ borderBottom: '1px solid var(--border-subtle)' }}>
+      <div className="max-w-6xl mx-auto px-6 lg:px-12 fade-up">
+        <div className="flex items-center gap-2 mb-3 font-mono text-xs" style={{ color: 'var(--accent)' }}>
+          <span style={{ width: '20px', height: '1px', background: 'var(--accent)' }}></span>
+          {t.kicker.toUpperCase()}
+        </div>
+        <h2 className="font-display text-3xl md:text-4xl mb-12" style={{ fontWeight: 500 }}>{t.title}</h2>
+        <div className="grid lg:grid-cols-5 gap-10 lg:gap-16">
+          <div className="lg:col-span-3 space-y-5">
+            <p className="text-secondary leading-relaxed">{t.p1}</p>
+            <p className="text-secondary leading-relaxed">{t.p2}</p>
+            <p className="text-secondary leading-relaxed">{t.p3}</p>
+            <p className="text-secondary leading-relaxed">{t.p4}</p>
+            <p className="text-secondary leading-relaxed">{t.p5}</p>
+            <div className="mt-8 p-5" style={{ background: 'var(--bg-elev-1)', border: '1px solid var(--border-subtle)', borderRadius: '8px' }}>
+              <div className="flex items-start gap-4">
+                <div className="placeholder-img" style={{ width: '120px', height: '70px', flexShrink: 0, borderRadius: '4px', fontSize: '10px' }}>
+                  [YouTube thumbnail]
+                </div>
+                <div>
+                  <div className="text-xs font-mono text-tertiary mb-1">{t.youtubeChannel}</div>
+                  <a href="https://www.youtube.com/@Bin_Rao" target="_blank" rel="noopener noreferrer" className="arrow-link text-sm" style={{ color: 'var(--accent)' }}>
+                    {t.youtubeLabel}
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="lg:col-span-2 space-y-3">
+            {t.facts.map((fact, i) => (
+              <div key={i} className="p-4" style={{ background: 'var(--bg-elev-1)', border: '1px solid var(--border-subtle)', borderRadius: '8px' }}>
+                <div className="font-mono text-xs text-tertiary mb-1.5">{fact.label}</div>
+                <div className="text-sm">{fact.value}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Experience({ lang }) {
+  const t = content[lang].experience;
+  return (
+    <section id="experience" className="py-20 lg:py-28" style={{ borderBottom: '1px solid var(--border-subtle)' }}>
+      <div className="max-w-6xl mx-auto px-6 lg:px-12 fade-up">
+        <div className="flex items-center gap-2 mb-3 font-mono text-xs" style={{ color: 'var(--accent)' }}>
+          <span style={{ width: '20px', height: '1px', background: 'var(--accent)' }}></span>
+          {t.kicker.toUpperCase()}
+        </div>
+        <h2 className="font-display text-3xl md:text-4xl mb-12" style={{ fontWeight: 500 }}>{t.title}</h2>
+        <div className="space-y-12">
+          {t.roles.map((role, i) => (
+            <div key={i} className="grid lg:grid-cols-5 gap-6 lg:gap-12 pb-12" style={{ borderBottom: i < t.roles.length - 1 ? '1px solid var(--border-subtle)' : 'none' }}>
+              <div className="lg:col-span-2">
+                <div className="font-mono text-xs text-tertiary mb-2">{role.period}</div>
+                <h3 className="font-display text-xl mb-1" style={{ fontWeight: 500 }}>{role.title}</h3>
+                {role.subtitle && <div className="text-sm text-secondary mb-3">{role.subtitle}</div>}
+                <div className="text-sm" style={{ color: 'var(--accent)' }}>{role.org}</div>
+                <div className="text-sm text-tertiary mt-1">{role.location}</div>
+              </div>
+              <div className="lg:col-span-3">
+                <p className="text-sm text-tertiary mb-4 font-mono leading-relaxed">{role.context}</p>
+                <ul className="space-y-2.5">
+                  {role.bullets.map((bullet, j) => (
+                    <li key={j} className="flex gap-3 text-sm text-secondary leading-relaxed">
+                      <span style={{ color: 'var(--accent)', marginTop: '6px', flexShrink: 0 }}>
+                        <svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor"><circle cx="4" cy="4" r="2"/></svg>
+                      </span>
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ProjectCard({ project, lang, onClick }) {
+  const p = project[lang];
+  return (
+    <button onClick={onClick} className="project-card text-left w-full p-6 bg-elev-1 fade-up" style={{ border: '1px solid var(--border-subtle)', borderRadius: '10px', background: 'var(--bg-elev-1)', cursor: 'pointer' }}>
+      <div className="placeholder-img mb-5" style={{ aspectRatio: '16/10', borderRadius: '6px' }}>
+        <div>
+          <div style={{ fontSize: '11px', color: 'var(--accent)', marginBottom: '3px' }}>[Photo]</div>
+          {project.photos[0]}
+        </div>
+      </div>
+      <div className="font-mono text-xs text-tertiary mb-2">{p.tagline}</div>
+      <h3 className="font-display text-lg mb-3" style={{ fontWeight: 500 }}>{p.title}</h3>
+      <p className="text-sm text-secondary mb-4 leading-relaxed" style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+        {p.summary}
+      </p>
+      <div className="flex flex-wrap gap-1.5 mb-5">
+        {p.stack.slice(0, 4).map((tech, i) => (
+          <span key={i} className="tech-tag">{tech}</span>
+        ))}
+        {p.stack.length > 4 && <span className="tech-tag">+{p.stack.length - 4}</span>}
+      </div>
+      <div className="arrow-link text-xs font-mono" style={{ color: 'var(--accent)' }}>
+        {lang === 'en' ? 'View details' : 'Details ansehen'}
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </div>
+    </button>
+  );
+}
+
+function ProjectModal({ project, lang, onClose }) {
+  const t = content[lang].projects;
+  const p = project[lang];
+
+  useEffect(() => {
+    document.body.classList.add('scroll-lock');
+    const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', onKey);
+    return () => {
+      document.body.classList.remove('scroll-lock');
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [onClose]);
+
+  return (
+    <div onClick={onClose} className="modal-backdrop" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 100, overflowY: 'auto', padding: '4rem 1rem' }}>
+      <div onClick={(e) => e.stopPropagation()} className="max-w-3xl mx-auto" style={{ background: 'var(--bg-elev-1)', border: '1px solid var(--border-strong)', borderRadius: '12px', padding: '2rem 2rem 2.5rem' }}>
+        <div className="flex items-start justify-between gap-4 mb-6">
+          <div>
+            <div className="font-mono text-xs text-tertiary mb-2">{p.tagline} · {p.period}</div>
+            <h2 className="font-display text-2xl md:text-3xl" style={{ fontWeight: 500 }}>{p.title}</h2>
+          </div>
+          <button onClick={onClose} aria-label={t.closeLabel} style={{ background: 'transparent', border: '1px solid var(--border-subtle)', borderRadius: '6px', padding: '6px', cursor: 'pointer', color: 'var(--text-secondary)', flexShrink: 0 }}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M6 6l12 12M6 18L18 6"/></svg>
+          </button>
+        </div>
+
+        <div className="grid grid-cols-3 gap-2 mb-6">
+          {project.photos.map((photo, i) => (
+            <div key={i} className="placeholder-img" style={{ aspectRatio: '4/3', borderRadius: '6px', fontSize: '10px' }}>
+              <div>
+                <div style={{ fontSize: '10px', color: 'var(--accent)', marginBottom: '2px' }}>[Photo]</div>
+                {photo}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <p className="text-secondary leading-relaxed mb-6">{p.summary}</p>
+
+        <div className="mb-6 p-4" style={{ background: 'var(--bg-elev-2)', borderRadius: '8px' }}>
+          <div className="font-mono text-xs text-tertiary mb-2">{t.teamLabel}</div>
+          <p className="text-sm text-secondary leading-relaxed">{p.role}</p>
+        </div>
+
+        <h3 className="font-display text-base mb-4" style={{ fontWeight: 500, color: 'var(--accent)' }}>{t.contributionsLabel}</h3>
+        <ul className="space-y-2.5 mb-7">
+          {p.contributions.map((item, i) => (
+            <li key={i} className="flex gap-3 text-sm text-secondary leading-relaxed">
+              <span style={{ color: 'var(--accent)', marginTop: '6px', flexShrink: 0 }}>
+                <svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor"><circle cx="4" cy="4" r="2"/></svg>
+              </span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mb-7 p-5" style={{ background: 'var(--accent-soft)', border: '1px solid var(--accent-strong)', borderRadius: '8px' }}>
+          <div className="font-mono text-xs mb-2" style={{ color: 'var(--accent)' }}>{t.outcomeLabel}</div>
+          <p className="text-sm leading-relaxed">{p.outcome}</p>
+        </div>
+
+        <div>
+          <div className="font-mono text-xs text-tertiary mb-3">{t.stackLabel}</div>
+          <div className="flex flex-wrap gap-1.5">
+            {p.stack.map((tech, i) => (
+              <span key={i} className="tech-tag">{tech}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Projects({ lang }) {
+  const t = content[lang].projects;
+  const [openProject, setOpenProject] = useState(null);
+
+  return (
+    <section id="projects" className="py-20 lg:py-28 relative" style={{ borderBottom: '1px solid var(--border-subtle)' }}>
+      <div className="max-w-6xl mx-auto px-6 lg:px-12 fade-up">
+        <div className="flex items-center gap-2 mb-3 font-mono text-xs" style={{ color: 'var(--accent)' }}>
+          <span style={{ width: '20px', height: '1px', background: 'var(--accent)' }}></span>
+          {t.kicker.toUpperCase()}
+        </div>
+        <h2 className="font-display text-3xl md:text-4xl mb-4" style={{ fontWeight: 500 }}>{t.title}</h2>
+        <p className="text-secondary mb-12 leading-relaxed" style={{ maxWidth: '640px' }}>{t.intro}</p>
+        <div className="grid md:grid-cols-2 gap-5">
+          {projects.map((project) => (
+            <ProjectCard key={project.id} project={project} lang={lang} onClick={() => setOpenProject(project)} />
+          ))}
+        </div>
+      </div>
+      {openProject && <ProjectModal project={openProject} lang={lang} onClose={() => setOpenProject(null)} />}
+    </section>
+  );
+}
+
+function Contact({ lang }) {
+  const t = content[lang].contact;
+  const items = [
+    { label: t.emailLabel, value: 'm@engrhaseeb.de', href: 'mailto:m@engrhaseeb.de', icon: 'mail' },
+    { label: t.phoneLabel, value: '+49 173 4547065', href: 'tel:+4917345470657', icon: 'phone' },
+    { label: t.locationLabel, value: 'Lemgo, NRW, Germany', href: null, icon: 'location' },
+    { label: t.linkedinLabel, value: 'linkedin.com/in/haseeb-engr', href: 'https://www.linkedin.com/in/haseeb-engr/', icon: 'linkedin' },
+    { label: t.githubLabel, value: 'github.com/haseeb-engr', href: 'https://github.com/haseeb-engr', icon: 'github' },
+    { label: t.youtubeLabel, value: 'youtube.com/@Bin_Rao', href: 'https://www.youtube.com/@Bin_Rao', icon: 'youtube' }
+  ];
+
+  return (
+    <section id="contact" className="py-20 lg:py-28">
+      <div className="max-w-6xl mx-auto px-6 lg:px-12 fade-up">
+        <div className="flex items-center gap-2 mb-3 font-mono text-xs" style={{ color: 'var(--accent)' }}>
+          <span style={{ width: '20px', height: '1px', background: 'var(--accent)' }}></span>
+          {t.kicker.toUpperCase()}
+        </div>
+        <h2 className="font-display text-3xl md:text-4xl mb-4" style={{ fontWeight: 500 }}>{t.title}</h2>
+        <p className="text-secondary mb-10 leading-relaxed" style={{ maxWidth: '640px' }}>{t.intro}</p>
+        <div className="mb-10">
+          <span className="pill pill-accent">
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#5DCAA5' }}></span>
+            {t.availability}
+          </span>
+        </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+          {items.map((item, i) => (
+            item.href ? (
+              <a key={i} href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer" className="p-4 transition" style={{ background: 'var(--bg-elev-1)', border: '1px solid var(--border-subtle)', borderRadius: '8px', textDecoration: 'none' }}>
+                <div className="font-mono text-xs text-tertiary mb-1.5">{item.label}</div>
+                <div className="text-sm" style={{ color: 'var(--text-primary)' }}>{item.value}</div>
+              </a>
+            ) : (
+              <div key={i} className="p-4" style={{ background: 'var(--bg-elev-1)', border: '1px solid var(--border-subtle)', borderRadius: '8px' }}>
+                <div className="font-mono text-xs text-tertiary mb-1.5">{item.label}</div>
+                <div className="text-sm">{item.value}</div>
+              </div>
+            )
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Footer({ lang }) {
+  const t = content[lang].footer;
+  const year = new Date().getFullYear();
+  return (
+    <footer style={{ borderTop: '1px solid var(--border-subtle)', padding: '2rem 0' }}>
+      <div className="max-w-6xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-3">
+        <div className="font-mono text-xs text-tertiary">© {year} Muhammad Haseeb. {t.rights}</div>
+        <div className="font-mono text-xs text-tertiary">{t.built}</div>
+      </div>
+    </footer>
+  );
+}
+
+function App() {
+  const [lang, setLang] = useState('en');
+  useScrollFade();
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
+  return (
+    <>
+      <Header lang={lang} setLang={setLang} />
+      <Hero lang={lang} />
+      <About lang={lang} />
+      <Experience lang={lang} />
+      <Projects lang={lang} />
+      <Contact lang={lang} />
+      <Footer lang={lang} />
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
 </script>
 </body>
 </html>
