@@ -523,7 +523,11 @@ const projects = [
       outcome: "Eine funktionierende IoT-Laborinfrastruktur, die einen statischen Demonstrationsraum in eine lebendige, fernbeobachtbare Forschungs- und Demonstrationsplattform verwandelt, übergeben für Folgeprojekte innerhalb von TRiNNOVATION OWL.",
       stack: ["Rust", "Tauri 2.0", "React 19", "TypeScript", "Tailwind 4", "SQLite WAL", "MQTT", "Python", "IoT-Architektur"]
     },
-    photos: ["DC-Showroom lab space", "Tauri dashboard UI", "MQTT data flow architecture"]
+    cardImage: { src: "images/dc-showroom-2.png", alt: "DC-Showroom at the DC-Transferzentrum, iFE TH OWL" },
+    media: [
+      { type: "image", src: "images/dc-showroom-2.png", alt: "DC-Showroom at the DC-Transferzentrum, iFE TH OWL" },
+      { type: "image", src: "images/dc-showroom-3.jpeg", alt: "DC-Showroom Tauri dashboard interface screenshot" }
+    ]
   },
   {
     id: "ev-charger",
@@ -1069,12 +1073,18 @@ function ProjectCard({ project, lang, onClick }) {
   const p = project[lang];
   return (
     <button onClick={onClick} className="project-card text-left w-full p-6 bg-elev-1 fade-up" style={{ border: '1px solid var(--border-subtle)', borderRadius: '10px', background: 'var(--bg-elev-1)', cursor: 'pointer' }}>
-      <div className="placeholder-img mb-5" style={{ aspectRatio: '16/10', borderRadius: '6px' }}>
-        <div>
-          <div style={{ fontSize: '11px', color: 'var(--accent)', marginBottom: '3px' }}>[Photo]</div>
-          {project.photos[0]}
+      {project.cardImage ? (
+        <div className="mb-5" style={{ aspectRatio: '16/10', borderRadius: '6px', overflow: 'hidden', background: 'var(--bg-elev-2)' }}>
+          <img src={project.cardImage.src} alt={project.cardImage.alt} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
         </div>
-      </div>
+      ) : (
+        <div className="placeholder-img mb-5" style={{ aspectRatio: '16/10', borderRadius: '6px' }}>
+          <div>
+            <div style={{ fontSize: '11px', color: 'var(--accent)', marginBottom: '3px' }}>[Photo]</div>
+            {project.photos[0]}
+          </div>
+        </div>
+      )}
       <div className="font-mono text-xs text-tertiary mb-2">{p.tagline}</div>
       <h3 className="font-display text-lg mb-3" style={{ fontWeight: 500 }}>{p.title}</h3>
       <p className="text-sm text-secondary mb-4 leading-relaxed" style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
@@ -1091,6 +1101,69 @@ function ProjectCard({ project, lang, onClick }) {
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </div>
     </button>
+  );
+}
+
+function MediaItem({ item }) {
+  if (item.type === 'youtube') {
+    const embedSrc = `https://www.youtube.com/embed/${item.id}?rel=0&modestbranding=1`;
+    return (
+      <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', background: 'var(--bg-elev-2)', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--border-subtle)' }}>
+        <iframe
+          src={embedSrc}
+          title={item.alt || 'Project video'}
+          loading="lazy"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+        />
+      </div>
+    );
+  }
+  return (
+    <div style={{ width: '100%', aspectRatio: '16/9', background: 'var(--bg-elev-2)', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--border-subtle)' }}>
+      <img src={item.src} alt={item.alt || ''} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+    </div>
+  );
+}
+
+function MediaGallery({ project }) {
+  const items = project.media;
+  if (!items || items.length === 0) {
+    if (project.photos && project.photos.length > 0) {
+      return (
+        <div className="grid grid-cols-3 gap-2 mb-6">
+          {project.photos.map((photo, i) => (
+            <div key={i} className="placeholder-img" style={{ aspectRatio: '4/3', borderRadius: '6px', fontSize: '10px' }}>
+              <div>
+                <div style={{ fontSize: '10px', color: 'var(--accent)', marginBottom: '2px' }}>[Photo]</div>
+                {photo}
+              </div>
+            </div>
+          ))}
+        </div>
+      );
+    }
+    return null;
+  }
+  const count = items.length;
+  let gridClass = 'grid gap-3 mb-6';
+  if (count === 1) {
+    gridClass += ' grid-cols-1';
+  } else if (count === 2) {
+    gridClass += ' grid-cols-1 md:grid-cols-2';
+  } else if (count === 3) {
+    gridClass += ' grid-cols-1 md:grid-cols-3';
+  } else {
+    gridClass += ' grid-cols-1 md:grid-cols-2';
+  }
+  return (
+    <div className={gridClass}>
+      {items.map((item, i) => (
+        <MediaItem key={i} item={item} />
+      ))}
+    </div>
   );
 }
 
@@ -1138,16 +1211,7 @@ function ProjectModal({ project, lang, onClose }) {
 
         <div style={{ padding: '1.5rem' }}>
 
-        <div className="grid grid-cols-3 gap-2 mb-6">
-          {project.photos.map((photo, i) => (
-            <div key={i} className="placeholder-img" style={{ aspectRatio: '4/3', borderRadius: '6px', fontSize: '10px' }}>
-              <div>
-                <div style={{ fontSize: '10px', color: 'var(--accent)', marginBottom: '2px' }}>[Photo]</div>
-                {photo}
-              </div>
-            </div>
-          ))}
-        </div>
+        <MediaGallery project={project} />
 
         <p className="text-secondary leading-relaxed mb-6">{p.summary}</p>
 
