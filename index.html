@@ -218,10 +218,10 @@ const content = {
         },
         {
           source: "linkedin.com",
-          tag: "Project announcement",
-          title: "TRiNNOVATION OWL Impulsprojekt launch",
-          description: "My LinkedIn post announcing the federally funded TRiNNOVATION OWL project at iFE TH OWL, covering the digitalization of the DC-Transferzentrum.",
-          url: "https://www.linkedin.com/posts/haseeb-engr_i-am-pleased-to-share-that-our-project-funded-ugcPost-7442826429404168192-qEAO",
+          tag: "Featured by TH OWL",
+          title: "Forschung & Transfer TH OWL post",
+          description: "The official Forschung & Transfer TH OWL LinkedIn account featured the DC-Showroom project (\"Praxisnah testen, lernen und Wissen weitergeben\"), highlighting the digitalization of the DC-Transferzentrum within the TRiNNOVATION OWL transfer program.",
+          url: "https://www.linkedin.com/posts/forschung-transfer-th-owl_praxisnah-testen-lernen-und-wissen-weitergeben-activity-7442510604986208256-YYUx",
           cta: "View on LinkedIn"
         }
       ]
@@ -413,10 +413,10 @@ const content = {
         },
         {
           source: "linkedin.com",
-          tag: "Projekt-Ankündigung",
-          title: "TRiNNOVATION OWL Impulsprojekt-Start",
-          description: "Mein LinkedIn-Beitrag zur Ankündigung des bundesgeförderten TRiNNOVATION-OWL-Projekts am iFE der TH OWL zur Digitalisierung des DC-Transferzentrums.",
-          url: "https://www.linkedin.com/posts/haseeb-engr_i-am-pleased-to-share-that-our-project-funded-ugcPost-7442826429404168192-qEAO",
+          tag: "Von TH OWL vorgestellt",
+          title: "Forschung & Transfer TH OWL Beitrag",
+          description: "Der offizielle LinkedIn-Account von Forschung & Transfer der TH OWL hat das DC-Showroom-Projekt vorgestellt (\"Praxisnah testen, lernen und Wissen weitergeben\") und die Digitalisierung des DC-Transferzentrums im TRiNNOVATION-OWL-Transferprogramm hervorgehoben.",
+          url: "https://www.linkedin.com/posts/forschung-transfer-th-owl_praxisnah-testen-lernen-und-wissen-weitergeben-activity-7442510604986208256-YYUx",
           cta: "Auf LinkedIn ansehen"
         }
       ]
@@ -955,12 +955,18 @@ function Hero({ lang }) {
         </div>
         <div className="lg:col-span-2 fade-up">
           <div className="relative" style={{ aspectRatio: '4/5' }}>
-            <div className="placeholder-img w-full h-full" style={{ borderRadius: '12px' }}>
-              <div>
-                <div style={{ fontSize: '13px', marginBottom: '4px', color: 'var(--accent)' }}>[Photo]</div>
-                Muhammad Haseeb<br/>professional headshot<br/>(replace with photo.jpg)
-              </div>
-            </div>
+            <img
+              src="profile_photo.png"
+              alt="Muhammad Haseeb, Embedded Systems and IoT Engineer based in Lemgo, Germany"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                borderRadius: '12px',
+                border: '1px solid var(--border-subtle)',
+                display: 'block'
+              }}
+            />
             <div className="absolute -bottom-3 -left-3" style={{ background: 'var(--bg-elev-1)', border: '1px solid var(--border-subtle)', borderRadius: '8px', padding: '10px 14px' }}>
               <div className="font-mono text-xs text-tertiary mb-0.5">{lang === 'en' ? 'Currently' : 'Aktuell'}</div>
               <div className="text-sm" style={{ color: 'var(--accent)' }}>M.Sc. IT @ TH OWL</div>
