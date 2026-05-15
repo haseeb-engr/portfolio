@@ -91,7 +91,7 @@ const { useState, useEffect, useRef } = React;
 
 const content = {
   en: {
-    nav: { about: "About", experience: "Experience", projects: "Projects", contact: "Contact" },
+    nav: { about: "About", experience: "Experience", recognition: "Recognition", press: "Press", projects: "Projects", testimonials: "Testimonials", contact: "Contact" },
     hero: {
       tagline: "Embedded Systems & IoT Engineer",
       location: "Lemgo, North Rhine-Westphalia, Germany",
@@ -176,6 +176,86 @@ const content = {
         }
       ]
     },
+    recognition: {
+      title: "Featured & recognition",
+      kicker: "External validation",
+      intro: "Independent recognition of my engineering work, from German research institutes to national programs and competition juries.",
+      ifeCard: {
+        label: "Featured researcher",
+        org: "Institut für Energieforschung (iFE), TH OWL",
+        role: "B. Eng. Haseeb, Muhammad · Wissenschaftliche Mitarbeitende",
+        description: "Official researcher profile at the Institut für Energieforschung, TH OWL, covering my work in hardware-software integration, embedded systems, IoT, and digital demonstrators for industrial and research environments.",
+        cta: "View on ife-owl.de"
+      },
+      awards: [
+        { label: "Innovative Project Scholarship", body: "IGNITE (National Technology Fund), Government of Pakistan. Proposal-level approval for ROS-based mobile robotics research project under the National Grassroots ICT Research Initiative." },
+        { label: "Distinguished Academic Performance", body: "College Honor Badge, PAF-Karachi Institute of Economics and Technology (KIET), October 2019, for distinguished academic performance during the Electrical Engineering degree program." },
+        { label: "Dream Tech Project Exhibition, 1st position", body: "SPEC 2019 Project Exhibition, IEEE PAF-KIET Student Branch, April 2019. First place across competing student engineering projects." },
+        { label: "Registered Engineer", body: "Pakistan Engineering Council, registration number ELECT/83672, registered since September 2020 under the Pakistan Engineering Council Act 1976." },
+        { label: "Drone Pilot License A1/A3", body: "Luftfahrt-Bundesamt (LBA), Germany. Official European drone pilot certification for open-category UAV operations." }
+      ]
+    },
+    press: {
+      title: "Press & mentions",
+      kicker: "Published & featured",
+      intro: "External coverage of my work, on official university websites and professional networks.",
+      items: [
+        {
+          source: "th-owl.de",
+          tag: "Official TH OWL project page",
+          title: "DC-Showroom",
+          description: "Official Technische Hochschule Ostwestfalen-Lippe project page for the DC-Showroom Impulsprojekt under the TRiNNOVATION OWL transfer program. Names me as project engineer (Bearbeitung: Muhammad Haseeb B.Eng) with Prof. Dr. Holger Borcherding as supervisor.",
+          url: "https://www.th-owl.de/forschung/transfer/trinnovation-owl/formate/impulsprojekte/dc-showroom/",
+          cta: "View on th-owl.de"
+        },
+        {
+          source: "th-owl.de",
+          tag: "Program overview",
+          title: "TRiNNOVATION OWL Impulsprojekte",
+          description: "Overview of the Impulsprojekte stream within the TRiNNOVATION OWL transfer program at TH OWL, funded under the federal-state initiative \"Innovative Hochschule\". The DC-Showroom project is one of the active Impulsprojekte in this stream.",
+          url: "https://www.th-owl.de/forschung/transfer/trinnovation-owl/formate/impulsprojekte/",
+          cta: "View on th-owl.de"
+        },
+        {
+          source: "linkedin.com",
+          tag: "Project announcement",
+          title: "TRiNNOVATION OWL Impulsprojekt launch",
+          description: "My LinkedIn post announcing the federally funded TRiNNOVATION OWL project at iFE TH OWL, covering the digitalization of the DC-Transferzentrum.",
+          url: "https://www.linkedin.com/posts/haseeb-engr_i-am-pleased-to-share-that-our-project-funded-ugcPost-7442826429404168192-qEAO",
+          cta: "View on LinkedIn"
+        }
+      ]
+    },
+    testimonials: {
+      title: "What colleagues say",
+      kicker: "Independent endorsements",
+      intro: "Recommendations from senior researchers and team leads I have worked with. Each can be read in full on LinkedIn, in the original English.",
+      translationNote: "",
+      viewOnLinkedIn: "View on LinkedIn",
+      items: [
+        {
+          quote: "An exceptionally talented engineer who gives due attention to detail. He has an outstanding ability to learn quickly and adapt to new challenges. Diligent, reliable, and a strong team member, he consistently demonstrates professionalism and commitment in his work.",
+          author: "Dr. Tariq Mairaj Rasool Khan",
+          role: "Associate Professor, PI & Director",
+          org: "NDT & Reliability Engineering Research Center, PNEC NUST",
+          linkedin: "https://www.linkedin.com/in/tariq-mairaj-rasool-khan-4866a499/"
+        },
+        {
+          quote: "Haseeb is a knowledgeable, dedicated and hardworking engineer. His expertise in embedded electronics, avionics, power systems and firmware development was already impressive, and he further grew in those areas through constant self-learning and improvement. I highly recommend him for any roles in the domains of product development, engineering, UAV development and embedded systems development.",
+          author: "Farhan Zafar Khan",
+          role: "Team Lead",
+          org: "PNEC NUST",
+          linkedin: "https://www.linkedin.com/in/farhan-zafar-khan-7409172a/"
+        },
+        {
+          quote: "Haseeb is one of the most hardworking and dedicated engineers I have worked with. One of his strongest qualities is his excellent problem-solving ability. No matter how challenging the task was, I have never seen him fail to deliver. He consistently approached problems with confidence, technical understanding, and determination until the objective was achieved.",
+          author: "Muhammad Tahir",
+          role: "Team Lead",
+          org: "PNEC NUST",
+          linkedin: "https://www.linkedin.com/in/tahir195/"
+        }
+      ]
+    },
     projects: {
       title: "Projects",
       kicker: "Shipped work",
@@ -197,7 +277,8 @@ const content = {
       linkedinLabel: "LinkedIn",
       githubLabel: "GitHub",
       youtubeLabel: "YouTube",
-      availability: "Available for new opportunities"
+      availability: "Available for new opportunities",
+      referencesNote: "References, Zeugnisse, and certificates available on request."
     },
     footer: {
       rights: "All rights reserved.",
@@ -205,7 +286,7 @@ const content = {
     }
   },
   de: {
-    nav: { about: "Über mich", experience: "Erfahrung", projects: "Projekte", contact: "Kontakt" },
+    nav: { about: "Über mich", experience: "Erfahrung", recognition: "Anerkennung", press: "Presse", projects: "Projekte", testimonials: "Empfehlungen", contact: "Kontakt" },
     hero: {
       tagline: "Embedded Systems & IoT Engineer",
       location: "Lemgo, Nordrhein-Westfalen, Deutschland",
@@ -290,6 +371,86 @@ const content = {
         }
       ]
     },
+    recognition: {
+      title: "Featured & Anerkennung",
+      kicker: "Externe Bestätigung",
+      intro: "Unabhängige Anerkennung meiner Ingenieurarbeit, von deutschen Forschungsinstituten bis zu nationalen Programmen und Wettbewerbsjurys.",
+      ifeCard: {
+        label: "Forschungsprofil",
+        org: "Institut für Energieforschung (iFE), TH OWL",
+        role: "B. Eng. Haseeb, Muhammad · Wissenschaftliche Mitarbeitende",
+        description: "Offizielles Forscherprofil am Institut für Energieforschung der TH OWL, umfasst meine Arbeit in Hardware-Software-Integration, eingebetteten Systemen, IoT und digitalen Demonstratoren für industrielle und Forschungsumgebungen.",
+        cta: "Auf ife-owl.de ansehen"
+      },
+      awards: [
+        { label: "Innovative Project Scholarship", body: "IGNITE (National Technology Fund), Regierung von Pakistan. Vorschlagsebenen-Genehmigung für ROS-basiertes Mobile-Robotics-Forschungsprojekt im Rahmen der National Grassroots ICT Research Initiative." },
+        { label: "Distinguished Academic Performance", body: "College Honor Badge, PAF-Karachi Institute of Economics and Technology (KIET), Oktober 2019, für ausgezeichnete akademische Leistungen während des Elektrotechnik-Studiums." },
+        { label: "Dream Tech Project Exhibition, 1. Platz", body: "SPEC 2019 Project Exhibition, IEEE PAF-KIET Student Branch, April 2019. Erster Platz unter konkurrierenden studentischen Engineering-Projekten." },
+        { label: "Registered Engineer", body: "Pakistan Engineering Council, Registrierungsnummer ELECT/83672, seit September 2020 nach dem Pakistan Engineering Council Act von 1976 eingetragen." },
+        { label: "Drohnenführerschein A1/A3", body: "Luftfahrt-Bundesamt (LBA), Deutschland. Offizielle europäische Drohnenführerschein-Zertifizierung für UAV-Betrieb in der offenen Kategorie." }
+      ]
+    },
+    press: {
+      title: "Presse & Erwähnungen",
+      kicker: "Veröffentlicht & vorgestellt",
+      intro: "Externe Berichterstattung über meine Arbeit, auf offiziellen Hochschul-Websites und in beruflichen Netzwerken.",
+      items: [
+        {
+          source: "th-owl.de",
+          tag: "Offizielle Projektseite der TH OWL",
+          title: "DC-Showroom",
+          description: "Offizielle Projektseite der Technischen Hochschule Ostwestfalen-Lippe für das DC-Showroom-Impulsprojekt im Rahmen des TRiNNOVATION-OWL-Transferprogramms. Nennt mich als Bearbeitung: Muhammad Haseeb B.Eng mit Prof. Dr. Holger Borcherding als Betreuung.",
+          url: "https://www.th-owl.de/forschung/transfer/trinnovation-owl/formate/impulsprojekte/dc-showroom/",
+          cta: "Auf th-owl.de ansehen"
+        },
+        {
+          source: "th-owl.de",
+          tag: "Programm-Übersicht",
+          title: "TRiNNOVATION OWL Impulsprojekte",
+          description: "Übersicht über die Impulsprojekte im TRiNNOVATION-OWL-Transferprogramm der TH OWL, gefördert durch die Bund-Länder-Initiative \"Innovative Hochschule\". Das DC-Showroom-Projekt ist eines der aktiven Impulsprojekte in diesem Programm.",
+          url: "https://www.th-owl.de/forschung/transfer/trinnovation-owl/formate/impulsprojekte/",
+          cta: "Auf th-owl.de ansehen"
+        },
+        {
+          source: "linkedin.com",
+          tag: "Projekt-Ankündigung",
+          title: "TRiNNOVATION OWL Impulsprojekt-Start",
+          description: "Mein LinkedIn-Beitrag zur Ankündigung des bundesgeförderten TRiNNOVATION-OWL-Projekts am iFE der TH OWL zur Digitalisierung des DC-Transferzentrums.",
+          url: "https://www.linkedin.com/posts/haseeb-engr_i-am-pleased-to-share-that-our-project-funded-ugcPost-7442826429404168192-qEAO",
+          cta: "Auf LinkedIn ansehen"
+        }
+      ]
+    },
+    testimonials: {
+      title: "Was Kolleg:innen sagen",
+      kicker: "Unabhängige Empfehlungen",
+      intro: "Empfehlungen von Senior-Forschern und Teamleads, mit denen ich gearbeitet habe. Jede ist in voller Länge auf LinkedIn im englischen Original lesbar.",
+      translationNote: "Übersetzung aus dem Englischen",
+      viewOnLinkedIn: "Auf LinkedIn ansehen",
+      items: [
+        {
+          quote: "Ein außergewöhnlich talentierter Ingenieur mit großer Detailgenauigkeit. Er hat eine herausragende Fähigkeit, schnell zu lernen und sich an neue Herausforderungen anzupassen. Sorgfältig, zuverlässig und ein starkes Teammitglied , er zeigt durchgehend Professionalität und Engagement in seiner Arbeit.",
+          author: "Dr. Tariq Mairaj Rasool Khan",
+          role: "Associate Professor, PI & Director",
+          org: "NDT & Reliability Engineering Research Center, PNEC NUST",
+          linkedin: "https://www.linkedin.com/in/tariq-mairaj-rasool-khan-4866a499/"
+        },
+        {
+          quote: "Haseeb ist ein kompetenter, engagierter und fleißiger Ingenieur. Seine Expertise in eingebetteter Elektronik, Avionik, Leistungselektronik und Firmware-Entwicklung war bereits beeindruckend und durch ständige Weiterbildung weiter gewachsen. Ich empfehle ihn nachdrücklich für Positionen in den Bereichen Produktentwicklung, Engineering, UAV-Entwicklung und Embedded Systems.",
+          author: "Farhan Zafar Khan",
+          role: "Team Lead",
+          org: "PNEC NUST",
+          linkedin: "https://www.linkedin.com/in/farhan-zafar-khan-7409172a/"
+        },
+        {
+          quote: "Haseeb ist einer der fleißigsten und engagiertesten Ingenieure, mit denen ich gearbeitet habe. Eine seiner stärksten Eigenschaften ist sein hervorragendes Problemlösungsvermögen. Egal wie anspruchsvoll die Aufgabe war , ich habe nie erlebt, dass er sie nicht erfolgreich abschloss. Er ging Probleme stets mit Selbstvertrauen, technischem Verständnis und Entschlossenheit an, bis das Ziel erreicht war.",
+          author: "Muhammad Tahir",
+          role: "Team Lead",
+          org: "PNEC NUST",
+          linkedin: "https://www.linkedin.com/in/tahir195/"
+        }
+      ]
+    },
     projects: {
       title: "Projekte",
       kicker: "Ausgelieferte Arbeit",
@@ -311,7 +472,8 @@ const content = {
       linkedinLabel: "LinkedIn",
       githubLabel: "GitHub",
       youtubeLabel: "YouTube",
-      availability: "Verfügbar für neue Möglichkeiten"
+      availability: "Verfügbar für neue Möglichkeiten",
+      referencesNote: "Referenzen, Arbeitszeugnisse und Zertifikate auf Anfrage erhältlich."
     },
     footer: {
       rights: "Alle Rechte vorbehalten.",
@@ -700,7 +862,10 @@ function Header({ lang, setLang }) {
         <nav className="hidden md:flex items-center gap-8">
           <a href="#about" className="nav-link text-sm text-secondary">{t.nav.about}</a>
           <a href="#experience" className="nav-link text-sm text-secondary">{t.nav.experience}</a>
+          <a href="#recognition" className="nav-link text-sm text-secondary">{t.nav.recognition}</a>
+          <a href="#press" className="nav-link text-sm text-secondary">{t.nav.press}</a>
           <a href="#projects" className="nav-link text-sm text-secondary">{t.nav.projects}</a>
+          <a href="#testimonials" className="nav-link text-sm text-secondary">{t.nav.testimonials}</a>
           <a href="#contact" className="nav-link text-sm text-secondary">{t.nav.contact}</a>
           <div className="flex items-center gap-1 ml-4 pl-4" style={{ borderLeft: '1px solid var(--border-subtle)' }}>
             <button
@@ -739,7 +904,10 @@ function Header({ lang, setLang }) {
           <div className="px-6 py-4 flex flex-col gap-3">
             <a href="#about" onClick={() => setMenuOpen(false)} className="text-sm text-secondary py-1">{t.nav.about}</a>
             <a href="#experience" onClick={() => setMenuOpen(false)} className="text-sm text-secondary py-1">{t.nav.experience}</a>
+            <a href="#recognition" onClick={() => setMenuOpen(false)} className="text-sm text-secondary py-1">{t.nav.recognition}</a>
+            <a href="#press" onClick={() => setMenuOpen(false)} className="text-sm text-secondary py-1">{t.nav.press}</a>
             <a href="#projects" onClick={() => setMenuOpen(false)} className="text-sm text-secondary py-1">{t.nav.projects}</a>
+            <a href="#testimonials" onClick={() => setMenuOpen(false)} className="text-sm text-secondary py-1">{t.nav.testimonials}</a>
             <a href="#contact" onClick={() => setMenuOpen(false)} className="text-sm text-secondary py-1">{t.nav.contact}</a>
             <div className="flex gap-3 pt-2 mt-2" style={{ borderTop: '1px solid var(--border-subtle)' }}>
               <button onClick={() => setLang('en')} className="text-xs font-mono" style={{ color: lang === 'en' ? 'var(--accent)' : 'var(--text-tertiary)', background: 'transparent', border: 'none', cursor: 'pointer' }}>EN</button>
@@ -995,6 +1163,118 @@ function ProjectModal({ project, lang, onClose }) {
   );
 }
 
+function Recognition({ lang }) {
+  const t = content[lang].recognition;
+  return (
+    <section id="recognition" className="py-20 lg:py-28" style={{ borderBottom: '1px solid var(--border-subtle)' }}>
+      <div className="max-w-6xl mx-auto px-6 lg:px-12 fade-up">
+        <div className="flex items-center gap-2 mb-3 font-mono text-xs" style={{ color: 'var(--accent)' }}>
+          <span style={{ width: '20px', height: '1px', background: 'var(--accent)' }}></span>
+          {t.kicker.toUpperCase()}
+        </div>
+        <h2 className="font-display text-3xl md:text-4xl mb-4" style={{ fontWeight: 500 }}>{t.title}</h2>
+        <p className="text-secondary mb-10 leading-relaxed" style={{ maxWidth: '640px' }}>{t.intro}</p>
+        <a href="https://www.ife-owl.de/ueber-uns/team/haseeb-muhammad" target="_blank" rel="noopener noreferrer" className="block mb-8 p-6 lg:p-8 transition" style={{ background: 'var(--bg-elev-1)', border: '1px solid var(--accent-strong)', borderRadius: '12px', textDecoration: 'none', position: 'relative' }}>
+          <div className="grid lg:grid-cols-3 gap-6 items-start">
+            <div className="lg:col-span-2">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="font-mono text-xs" style={{ color: 'var(--accent)', letterSpacing: '0.05em' }}>{t.ifeCard.label.toUpperCase()}</span>
+              </div>
+              <h3 className="font-display text-xl md:text-2xl mb-2" style={{ fontWeight: 500, color: 'var(--text-primary)' }}>{t.ifeCard.org}</h3>
+              <div className="font-mono text-sm mb-4" style={{ color: 'var(--accent)' }}>{t.ifeCard.role}</div>
+              <p className="text-secondary text-sm leading-relaxed">{t.ifeCard.description}</p>
+            </div>
+            <div className="flex flex-col items-start lg:items-end justify-between gap-4">
+              <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: 'var(--text-tertiary)' }}>ife-owl.de</div>
+              <div className="arrow-link text-sm font-medium" style={{ color: 'var(--accent)' }}>
+                {t.ifeCard.cta}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M7 17L17 7M10 7h7v7"/></svg>
+              </div>
+            </div>
+          </div>
+        </a>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+          {t.awards.map((award, i) => (
+            <div key={i} className="p-5" style={{ background: 'var(--bg-elev-1)', border: '1px solid var(--border-subtle)', borderRadius: '8px' }}>
+              <div className="font-mono text-xs mb-2" style={{ color: 'var(--accent)', letterSpacing: '0.02em' }}>{award.label}</div>
+              <p className="text-sm text-secondary leading-relaxed">{award.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Testimonials({ lang }) {
+  const t = content[lang].testimonials;
+  return (
+    <section id="testimonials" className="py-20 lg:py-28" style={{ borderBottom: '1px solid var(--border-subtle)' }}>
+      <div className="max-w-6xl mx-auto px-6 lg:px-12 fade-up">
+        <div className="flex items-center gap-2 mb-3 font-mono text-xs" style={{ color: 'var(--accent)' }}>
+          <span style={{ width: '20px', height: '1px', background: 'var(--accent)' }}></span>
+          {t.kicker.toUpperCase()}
+        </div>
+        <h2 className="font-display text-3xl md:text-4xl mb-4" style={{ fontWeight: 500 }}>{t.title}</h2>
+        <p className="text-secondary mb-10 leading-relaxed" style={{ maxWidth: '640px' }}>{t.intro}</p>
+        <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-5">
+          {t.items.map((item, i) => (
+            <div key={i} className="p-6 flex flex-col" style={{ background: 'var(--bg-elev-1)', border: '1px solid var(--border-subtle)', borderRadius: '10px' }}>
+              <div className="mb-5" style={{ color: 'var(--accent)', fontSize: '28px', fontFamily: 'Fraunces, serif', lineHeight: '0.6' }}>“</div>
+              <p className="text-sm text-secondary leading-relaxed mb-6 flex-grow" style={{ fontStyle: 'italic' }}>{item.quote}</p>
+              {lang === 'de' && t.translationNote && (
+                <div className="font-mono text-xs mb-3" style={{ color: 'var(--text-tertiary)' }}>{t.translationNote}</div>
+              )}
+              <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '14px' }}>
+                <div className="font-medium text-sm" style={{ color: 'var(--text-primary)' }}>{item.author}</div>
+                <div className="text-xs text-tertiary mt-1 leading-relaxed">{item.role}</div>
+                <div className="text-xs text-tertiary mt-0.5 leading-relaxed">{item.org}</div>
+                <a href={item.linkedin} target="_blank" rel="noopener noreferrer" className="arrow-link mt-3 text-xs font-mono inline-flex" style={{ color: 'var(--accent)' }}>
+                  {t.viewOnLinkedIn}
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M7 17L17 7M10 7h7v7"/></svg>
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Press({ lang }) {
+  const t = content[lang].press;
+  return (
+    <section id="press" className="py-20 lg:py-28" style={{ borderBottom: '1px solid var(--border-subtle)' }}>
+      <div className="max-w-6xl mx-auto px-6 lg:px-12 fade-up">
+        <div className="flex items-center gap-2 mb-3 font-mono text-xs" style={{ color: 'var(--accent)' }}>
+          <span style={{ width: '20px', height: '1px', background: 'var(--accent)' }}></span>
+          {t.kicker.toUpperCase()}
+        </div>
+        <h2 className="font-display text-3xl md:text-4xl mb-4" style={{ fontWeight: 500 }}>{t.title}</h2>
+        <p className="text-secondary mb-10 leading-relaxed" style={{ maxWidth: '640px' }}>{t.intro}</p>
+        <div className="grid md:grid-cols-3 gap-4">
+          {t.items.map((item, i) => (
+            <a key={i} href={item.url} target="_blank" rel="noopener noreferrer" className="project-card flex flex-col p-5" style={{ background: 'var(--bg-elev-1)', border: '1px solid var(--border-subtle)', borderRadius: '10px', textDecoration: 'none' }}>
+              <div className="flex items-center justify-between mb-4">
+                <span className="font-mono text-xs px-2 py-1" style={{ color: 'var(--accent)', background: 'var(--accent-soft)', borderRadius: '4px', letterSpacing: '0.03em' }}>{item.source}</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'var(--text-tertiary)' }}><path d="M7 17L17 7M10 7h7v7"/></svg>
+              </div>
+              <div className="font-mono text-xs text-tertiary mb-2">{item.tag}</div>
+              <h3 className="font-display text-lg mb-3" style={{ fontWeight: 500 }}>{item.title}</h3>
+              <p className="text-sm text-secondary leading-relaxed mb-4 flex-grow">{item.description}</p>
+              <div className="arrow-link text-xs font-mono mt-auto" style={{ color: 'var(--accent)' }}>
+                {item.cta}
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Projects({ lang }) {
   const t = content[lang].projects;
   const [openProject, setOpenProject] = useState(null);
@@ -1039,11 +1319,12 @@ function Contact({ lang }) {
         </div>
         <h2 className="font-display text-3xl md:text-4xl mb-4" style={{ fontWeight: 500 }}>{t.title}</h2>
         <p className="text-secondary mb-10 leading-relaxed" style={{ maxWidth: '640px' }}>{t.intro}</p>
-        <div className="mb-10">
+        <div className="mb-10 flex flex-wrap items-center gap-4">
           <span className="pill pill-accent">
             <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#5DCAA5' }}></span>
             {t.availability}
           </span>
+          <span className="text-xs font-mono" style={{ color: 'var(--text-tertiary)' }}>{t.referencesNote}</span>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
           {items.map((item, i) => (
@@ -1090,7 +1371,10 @@ function App() {
       <Hero lang={lang} />
       <About lang={lang} />
       <Experience lang={lang} />
+      <Recognition lang={lang} />
+      <Press lang={lang} />
       <Projects lang={lang} />
+      <Testimonials lang={lang} />
       <Contact lang={lang} />
       <Footer lang={lang} />
     </>
