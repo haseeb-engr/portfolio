@@ -523,10 +523,9 @@ const projects = [
       outcome: "Eine funktionierende IoT-Laborinfrastruktur, die einen statischen Demonstrationsraum in eine lebendige, fernbeobachtbare Forschungs- und Demonstrationsplattform verwandelt, übergeben für Folgeprojekte innerhalb von TRiNNOVATION OWL.",
       stack: ["Rust", "Tauri 2.0", "React 19", "TypeScript", "Tailwind 4", "SQLite WAL", "MQTT", "Python", "IoT-Architektur"]
     },
-    cardImage: { src: "images/dc-showroom-2.png", alt: "DC-Showroom at the DC-Transferzentrum, iFE TH OWL" },
+    cardImage: { src: "dc-showroom.png", alt: "DC-Showroom at the DC-Transferzentrum, iFE TH OWL" },
     media: [
-      { type: "image", src: "images/dc-showroom-2.png", alt: "DC-Showroom at the DC-Transferzentrum, iFE TH OWL" },
-      { type: "image", src: "images/dc-showroom-3.jpeg", alt: "DC-Showroom Tauri dashboard interface screenshot" }
+      { type: "youtube", id: "DJuuRlylpNk", si: "kdXJEDloPWmgLsoY", alt: "DC-Showroom dashboard demo video" }
     ]
   },
   {
@@ -567,7 +566,54 @@ const projects = [
       outcome: "Eine funktionierende End-to-End-Industrie-IoT-Integration mit Live-Monitoring und Fernsteuerung eines Beckhoff-gesteuerten EV-Laders über das SKIM-Netzwerk, mit wiederverwendbarem Broker-Setup und erweiterbarer Topic-Struktur.",
       stack: ["MQTT", "Mosquitto", "C# (WinForms/WPF)", "Industrial Ethernet", "Beckhoff IPC C6920-0060", "TwinCAT 3", "ambiCHARGE 11 kW", "Industrielle IoT"]
     },
-    photos: ["Beckhoff IPC setup", "AmbiMonitor dashboard", "ambiCHARGE 11 kW unit"]
+    cardImage: { src: "EV.png", alt: "Smart EV Charger Monitoring and Control system" },
+    media: [
+      { type: "youtube", id: "Q7ZULZyErCM", alt: "Smart EV Charger Monitoring and Control demo video 1" },
+      { type: "youtube", id: "WZRdiXhIaCM", alt: "Smart EV Charger Monitoring and Control demo video 2" }
+    ]
+  },
+  {
+    id: "energysim",
+    en: {
+      title: "EnergySim, Gamified Energy Management Simulation",
+      tagline: "Gamification Innovation Lab · TH OWL",
+      period: "M.Sc. Elective Module · TH OWL",
+      summary: "Course project in the Gamification Innovation Lab (GIL) elective module at TH OWL. A 5-person team built a real-time desktop simulation game in which the player runs a washing-machine factory and balances energy sources, production speed, cost, and waste across a short shift. The work bridges software engineering and gamified learning design.",
+      role: "Project lead in a 5-person team. Owned problem framing, system concept, report integration, and exam coordination. Teammates implemented the simulation logic (Adil), React frontend (Usman), visual design (Komal), and validation and packaging (Hassan).",
+      contributions: [
+        "Framed an open-ended gamification brief into a concrete simulation concept: chief energy engineer managing a one-shift washing-machine factory under real-time power, cost, and waste constraints",
+        "Defined the core design goal of meaningful simplification: enough mechanics to teach systems thinking, simple enough for a 30-second classroom demo",
+        "Coordinated the 5-person team across simulation logic, React frontend, visual design, validation, and packaging",
+        "Integrated the team's contributions into a single submission-ready deliverable, including the project report and the demo build",
+        "Wrote and edited the introduction, motivation, and conclusion sections of the academic report",
+        "Owned exam coordination and presented the project understanding and overall concept during the final defense",
+        "Selected and justified the Tauri 2.0 + React 18 + TypeScript + Rust + Vite stack as a fit for a dashboard-style management simulation, with comparison against full game engines (Unity, Godot)"
+      ],
+      outcome: "A submitted, working desktop simulation game and a complete academic report covering motivation, methodology, mathematical model, results, validation strategy, and reflection. The project demonstrates how gamification can turn an industrial energy-management problem into an interactive learning environment.",
+      stack: ["Tauri 2.0", "React 18", "TypeScript", "Rust", "Vite", "CSS", "Cargo / Node.js", "Project Leadership", "Technical Writing", "Team Coordination"]
+    },
+    de: {
+      title: "EnergySim, gamifiziertes Energiemanagement-Simulationsspiel",
+      tagline: "Gamification Innovation Lab · TH OWL",
+      period: "M.Sc.-Wahlmodul · TH OWL",
+      summary: "Projektarbeit im Wahlmodul Gamification Innovation Lab (GIL) der TH OWL. Ein fünfköpfiges Team entwickelte ein Echtzeit-Desktop-Simulationsspiel, in dem die Spielerin oder der Spieler eine Waschmaschinenfabrik leitet und Energiequellen, Produktionsgeschwindigkeit, Kosten und Verschwendung über eine kurze Schicht hinweg ausbalanciert. Die Arbeit verbindet Softwareentwicklung mit gamifiziertem Lerndesign.",
+      role: "Projektleitung in einem fünfköpfigen Team. Verantwortung für Problemstellung, Systemkonzept, Berichtsintegration und Prüfungskoordination. Teammitglieder implementierten die Simulationslogik (Adil), das React-Frontend (Usman), das visuelle Design (Komal) sowie Validierung und Paketierung (Hassan).",
+      contributions: [
+        "Übersetzung einer offenen Gamification-Aufgabe in ein konkretes Simulationskonzept: Chefenergieingenieur einer Waschmaschinenfabrik unter Echtzeit-Restriktionen für Leistung, Kosten und Verschwendung",
+        "Definition des Designziels einer sinnvollen Vereinfachung: ausreichend Mechanik für systemisches Denken, einfach genug für eine 30-Sekunden-Demo im Unterricht",
+        "Koordination des fünfköpfigen Teams über Simulationslogik, React-Frontend, visuelles Design, Validierung und Paketierung hinweg",
+        "Integration der Teambeiträge zu einer abgabefertigen Lieferung, inklusive des Projektberichts und des Demo-Builds",
+        "Verfassen und Redaktion der Einleitung, Motivation und des Fazits des wissenschaftlichen Berichts",
+        "Verantwortung für die Prüfungskoordination und Präsentation des Projektverständnisses und des Gesamtkonzepts in der Abschlussverteidigung",
+        "Auswahl und Begründung des Stacks Tauri 2.0 + React 18 + TypeScript + Rust + Vite als geeignete Lösung für ein Dashboard-basiertes Management-Simulationsspiel, mit Vergleich zu vollwertigen Game-Engines (Unity, Godot)"
+      ],
+      outcome: "Ein abgegebenes, funktionierendes Desktop-Simulationsspiel sowie ein vollständiger wissenschaftlicher Bericht zu Motivation, Methodik, mathematischem Modell, Ergebnissen, Validierungsstrategie und Reflexion. Das Projekt zeigt, wie Gamification ein industrielles Energiemanagement-Problem in eine interaktive Lernumgebung verwandelt.",
+      stack: ["Tauri 2.0", "React 18", "TypeScript", "Rust", "Vite", "CSS", "Cargo / Node.js", "Projektleitung", "Technische Dokumentation", "Teamkoordination"]
+    },
+    cardImage: { src: "energysim.png", alt: "EnergySim gamified energy management simulation, TH OWL Gamification Innovation Lab" },
+    media: [
+      { type: "youtube", id: "nWkbeo0HRJM", alt: "EnergySim simulation game demo video" }
+    ]
   },
   {
     id: "nurse-call",
@@ -575,43 +621,46 @@ const projects = [
       title: "Hospital Nurse Call System",
       tagline: "Hashim Medical City, Hyderabad",
       period: "2019 – 2020 · PAF-KIET",
-      summary: "End-to-end embedded hospital call system designed, built, and deployed for operational use at Hashim Medical City (HMC), Hyderabad. Led a 3-person team owning the full product lifecycle from circuit design to field deployment.",
+      summary: "End-to-end embedded hospital call system designed, built, and deployed for operational use at Hashim Medical City (HMC), Hyderabad. The system uses a hybrid communication architecture: HC-12 wireless RF modules for the patient call switches at every bedside, and an RS485 wired bus for the nurse station backbone and ward-to-ward communication. Led a 3-person team owning the full product lifecycle from circuit design to field deployment.",
       role: "Team lead. Owned hardware engineering, PCB design, firmware, RS485 bus implementation, and field deployment.",
       contributions: [
         "Circuit design of patient bedside units and the central nurse station unit (ATmega328-based)",
         "Multilayer PCB design with SMD components, fabricated in China, assembled and tested in-house with SMT and THT hand soldering",
         "Enclosure design in SolidWorks, CNC-machined externally from acrylic based on my CAD and DXF files",
         "Firmware in Embedded C for the ATmega328 nodes (call signaling, button debouncing, addressing, status indicators, power management)",
-        "RS485 wired communication bus between bedside units and the nurse station for reliable noise-immune signaling across ward distances",
+        "Hybrid communication architecture: HC-12 wireless RF modules for the patient call switches at every bedside (cable-free installation), and an RS485 wired bus for the nurse station backbone and ward-to-ward communication, chosen as the right protocol for each distance and reliability requirement",
         "LabVIEW operator dashboard at the nurse station with live per-room call status, queueing, response tracking",
         "SQL database logging every call event with timestamps, room IDs, response times",
         "Email notification service for automatic alerts to nursing staff and administration",
-        "On-site installation at HMC: cabling, addressing nodes on the RS485 bus, commissioning, end-user training"
+        "On-site installation at HMC: HC-12 module pairing per ward, RS485 bus cabling and node addressing, commissioning, and end-user training for nursing staff"
       ],
       outcome: "A working, deployed hospital-grade nurse call system in operational use at HMC Hyderabad. Built from zero to product by a team of three.",
-      stack: ["ATmega328", "Embedded C", "LabVIEW", "SQL", "RS485", "SolidWorks", "Multilayer PCB", "SMT/THT", "SMTP"]
+      stack: ["ATmega328", "Embedded C", "LabVIEW", "SQL", "HC-12 Wireless RF", "RS485", "SolidWorks", "Multilayer PCB", "SMT/THT", "SMTP"]
     },
     de: {
       title: "Krankenhaus-Schwesternruf-System",
       tagline: "Hashim Medical City, Hyderabad",
       period: "2019 – 2020 · PAF-KIET",
-      summary: "End-to-End-Entwicklung eines eingebetteten Krankenhausrufsystems, ausgeliefert und betrieblich eingesetzt am Hashim Medical City (HMC), Hyderabad. Leitung eines dreiköpfigen Teams über den gesamten Produktlebenszyklus von der Schaltungsentwicklung bis zur Inbetriebnahme vor Ort.",
+      summary: "End-to-End-Entwicklung eines eingebetteten Krankenhausrufsystems, ausgeliefert und betrieblich eingesetzt am Hashim Medical City (HMC), Hyderabad. Das System nutzt eine hybride Kommunikationsarchitektur: HC-12-Funkmodule für die Patientenruftaster an jedem Bett (kabellose Installation), und einen drahtgebundenen RS485-Bus für das Backbone der Schwesternstationen und die stationsübergreifende Kommunikation. Leitung eines dreiköpfigen Teams über den gesamten Produktlebenszyklus.",
       role: "Teamleitung. Verantwortung für Hardwareentwicklung, PCB-Design, Firmware, RS485-Bus-Implementierung und Inbetriebnahme vor Ort.",
       contributions: [
         "Schaltungsentwurf der Patientenrufstellen und der zentralen Schwesternstation (ATmega328-basiert)",
         "Mehrlagiges PCB-Design mit SMD-Bestückung, Fertigung in China, Bestückung und Test im eigenen Labor mit SMT und THT",
         "Gehäusedesign in SolidWorks, extern CNC-gefräst aus Acryl basierend auf meinen CAD- und DXF-Dateien",
         "Firmware in Embedded C für die ATmega328-Knoten (Rufsignalisierung, Tasten-Entprellung, Adressierung, Statusanzeigen, Energiemanagement)",
-        "Drahtgebundener RS485-Bus zwischen Patientenstellen und Schwesternstation für zuverlässige, störfeste Übertragung über Stationsdistanzen",
+        "Hybride Kommunikationsarchitektur: HC-12-Funkmodule für die Patientenruftaster an jedem Bett (kabellose Installation), und drahtgebundener RS485-Bus für das Backbone der Schwesternstationen und die stationsübergreifende Kommunikation, das jeweils passende Protokoll für jede Distanz- und Zuverlässigkeitsanforderung",
         "LabVIEW-Operator-Dashboard mit Echtzeit-Statusanzeige je Zimmer, Warteschlange und Reaktionsverfolgung",
         "SQL-Datenbank zur Protokollierung jedes Rufereignisses mit Zeitstempel, Zimmer-ID und Reaktionszeiten",
         "E-Mail-Benachrichtigungsdienst für automatische Alarme an Pflegepersonal und Verwaltung",
-        "Inbetriebnahme vor Ort am HMC: Verkabelung, Adressierung der Knoten am RS485-Bus, Schulung der Anwender"
+        "Inbetriebnahme vor Ort am HMC: HC-12-Modul-Pairing je Station, RS485-Bus-Verkabelung und Knoten-Adressierung, Inbetriebnahme und Schulung des Pflegepersonals"
       ],
       outcome: "Ein funktionierendes, eingesetztes Schwesternrufsystem in Krankenhausqualität im Betrieb am HMC Hyderabad. Von null bis zum Produkt durch ein Team von drei Personen aufgebaut.",
-      stack: ["ATmega328", "Embedded C", "LabVIEW", "SQL", "RS485", "SolidWorks", "Multilayer-PCB", "SMT/THT", "SMTP"]
+      stack: ["ATmega328", "Embedded C", "LabVIEW", "SQL", "HC-12 Funkmodule", "RS485", "SolidWorks", "Multilayer-PCB", "SMT/THT", "SMTP"]
     },
-    photos: ["PCB assembly", "Acrylic enclosure", "Deployment at HMC Hyderabad"]
+    cardImage: { src: "ncs.png", alt: "Hospital Nurse Call System deployed at Hashim Medical City" },
+    media: [
+      { type: "youtube", id: "fCsEzpfexL0", alt: "Hospital Nurse Call System demo video at HMC Hyderabad" }
+    ]
   },
   {
     id: "ptl-daraz",
@@ -655,7 +704,10 @@ const projects = [
       outcome: "Ein funktionierendes PTL-Sortiersystem im Pilot-Einsatz in Daraz-Warehouse-Operationen in mehreren pakistanischen Städten, validiert für Geschwindigkeits- und Genauigkeitsverbesserungen gegenüber dem vorherigen manuellen Sortierprozess.",
       stack: ["ATmega328", "Embedded C", "Proteus", "RS485", "SolidWorks", "Multilayer-PCB", "SMT/THT", "Honeywell / Zebra Scanner", "Python (UI durch Teammitglied)"]
     },
-    photos: ["PTL indicator units", "PCB layout", "Warehouse pilot deployment"]
+    cardImage: { src: "PTL.png", alt: "Put-to-Light Warehouse Sorting System for Daraz Pakistan" },
+    media: [
+      { type: "youtube", id: "sDe9cDG4A9E", start: 4, alt: "PTL Warehouse Sorting System demo video" }
+    ]
   },
   {
     id: "wheelchair",
@@ -697,7 +749,8 @@ const projects = [
       outcome: "Ein funktionierender Prototyp, der elektrische Mobilität, eingebettete Steuerung, Gesundheitssensoren, GPS, GSM-Mobilfunk-IoT, Mobile-Plattform-Integration und Patientenassistenz in einem multidisziplinären Smart-Rollstuhl-System vereint.",
       stack: ["ESP32", "Embedded C/C++", "Arduino IDE", "BLDC-Motoren", "GPS", "GSM", "Herzfrequenzsensor", "Blynk IoT-Plattform"]
     },
-    photos: ["Assembled wheelchair prototype", "ESP32 electronics", "Blynk dashboard"]
+    cardImage: { src: "wheelchair.png", alt: "Smart Health-Monitoring Wheelchair Prototype" },
+    media: []
   },
   {
     id: "robo-war",
@@ -739,7 +792,10 @@ const projects = [
       outcome: "1. Platz in der Klasse unter 50 kg. Vize in der Klasse unter 100 kg. Beide Roboter haben zuverlässig in echten Turnieren bestanden.",
       stack: ["SolidWorks", "Metallbau & Schweißen", "DC-Getriebemotoren", "Motortreiber", "RF/NRF-Fernbedienung", "Bluetooth", "Blynk", "Embedded C", "Arduino IDE"]
     },
-    photos: ["50 kg robot in arena", "100 kg robot assembled", "Welded chassis"]
+    cardImage: { src: "robo.png", alt: "Robo-War Combat Robots 50 kg winner and 100 kg runner-up" },
+    media: [
+      { type: "youtube", id: "vL6-_7F83Zs", orientation: "portrait", alt: "Robo-War combat robot demonstration" }
+    ]
   },
   {
     id: "ros-robot",
@@ -779,7 +835,10 @@ const projects = [
       outcome: "Ein funktionierender Mobile-Robotics-Demonstrator mit Integration von ROS, Computer Vision und Embedded Control. Der Forschungsantrag erhielt Vorschlagsebenen-Genehmigung von IGNITE (National Technology Fund, Regierung von Pakistan).",
       stack: ["ROS", "Raspberry Pi 3", "Arduino Mega 2560", "Embedded C/C++", "Python", "Pixy 2 CMUcam5", "BLDC-Räder", "Servomotoren", "SolidWorks", "Eigene PCB"]
     },
-    photos: ["Mobile platform assembled", "Pixy 2 vision module", "Team at presentation"]
+    cardImage: { src: "ros.png", alt: "ROS-Based Vision-Guided Mobile Robot Platform" },
+    media: [
+      { type: "youtube", id: "lsAdx2US418", alt: "ROS-Based Vision-Guided Mobile Robot Platform demo video" }
+    ]
   },
   {
     id: "disinfectant",
@@ -815,7 +874,10 @@ const projects = [
       outcome: "Ein funktionierendes, eingesetztes Desinfektionssystem im laufenden Betrieb an mehreren Standorten (Akademie, Moschee, Firmen) während der COVID-19-Periode.",
       stack: ["ATmega (Arduino-Stil)", "Embedded C", "Arduino IDE", "Sharp-IR-Sensoren", "Pumpen- & Sprühsystem", "Sensorintegration"]
     },
-    photos: ["Gate at academy deployment", "Control electronics", "Spray nozzle arrangement"]
+    cardImage: { src: "gate.png", alt: "Automatic Disinfectant Walkthrough Gate, COVID-19 deployment" },
+    media: [
+      { type: "youtube", id: "t0AE9_4sBtY", orientation: "portrait", alt: "Disinfectant walkthrough gate in operation" }
+    ]
   }
 ];
 
@@ -1001,9 +1063,9 @@ function About({ lang }) {
             <p className="text-secondary leading-relaxed">{t.p5}</p>
             <div className="mt-8 p-5" style={{ background: 'var(--bg-elev-1)', border: '1px solid var(--border-subtle)', borderRadius: '8px' }}>
               <div className="flex items-start gap-4">
-                <div className="placeholder-img" style={{ width: '120px', height: '70px', flexShrink: 0, borderRadius: '4px', fontSize: '10px' }}>
-                  [YouTube thumbnail]
-                </div>
+                <a href="https://www.youtube.com/@Bin_Rao" target="_blank" rel="noopener noreferrer" style={{ width: '120px', height: '70px', flexShrink: 0, borderRadius: '4px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid var(--accent-strong)', background: 'var(--bg-elev-2)', textDecoration: 'none' }}>
+                  <span className="font-display" style={{ color: 'var(--accent)', fontSize: '20px', fontWeight: 500, letterSpacing: '-0.01em' }}>Lemgo</span>
+                </a>
                 <div>
                   <div className="text-xs font-mono text-tertiary mb-1">{t.youtubeChannel}</div>
                   <a href="https://www.youtube.com/@Bin_Rao" target="_blank" rel="noopener noreferrer" className="arrow-link text-sm" style={{ color: 'var(--accent)' }}>
@@ -1106,19 +1168,18 @@ function ProjectCard({ project, lang, onClick }) {
 
 function MediaItem({ item }) {
   if (item.type === 'youtube') {
-    const embedSrc = `https://www.youtube.com/embed/${item.id}?rel=0&modestbranding=1`;
+    const startParam = item.start ? `?start=${item.start}` : '';
+    const iframeHtml = `<iframe src="https://www.youtube.com/embed/${item.id}${startParam}" title="${(item.alt || 'Project video').replace(/"/g, '&quot;')}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;"></iframe>`;
+    const isPortrait = item.orientation === 'portrait';
+    if (isPortrait) {
+      return (
+        <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+          <div style={{ position: 'relative', width: '100%', maxWidth: '360px', aspectRatio: '9/16', background: 'var(--bg-elev-2)', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--border-subtle)' }} dangerouslySetInnerHTML={{ __html: iframeHtml }} />
+        </div>
+      );
+    }
     return (
-      <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', background: 'var(--bg-elev-2)', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--border-subtle)' }}>
-        <iframe
-          src={embedSrc}
-          title={item.alt || 'Project video'}
-          loading="lazy"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
-        />
-      </div>
+      <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', background: 'var(--bg-elev-2)', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--border-subtle)' }} dangerouslySetInnerHTML={{ __html: iframeHtml }} />
     );
   }
   return (
