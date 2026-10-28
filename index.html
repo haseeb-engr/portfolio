@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Muhammad Haseeb, Embedded Systems & IoT Engineer</title>
-<meta name="description" content="Muhammad Haseeb. Embedded Systems & IoT Engineer based in Lemgo, Germany. Bridging hardware and software, from concept to deployment. M.Sc. IT @ TH OWL." />
+<title>Muhammad Haseeb, Robotics & Embedded Systems Engineer</title>
+<meta name="description" content="Muhammad Haseeb. Robotics & Embedded Systems Engineer in Lemgo, Germany. Humanoid robotics (ROS 2, Unitree G1) at Fraunhofer IOSB-INA. Bridging hardware and software, from concept to deployment. M.Sc. IT @ TH OWL." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -93,21 +93,21 @@ const content = {
   en: {
     nav: { about: "About", experience: "Experience", recognition: "Recognition", press: "Press", projects: "Projects", testimonials: "Testimonials", contact: "Contact" },
     hero: {
-      tagline: "Embedded Systems & IoT Engineer",
+      tagline: "Robotics & Embedded Systems Engineer",
       location: "Lemgo, North Rhine-Westphalia, Germany",
       headline: "Bridging hardware and software, from concept to deployment.",
-      intro: "TH OWL researcher with shipped products in real customers' hands. Building modern embedded systems where firmware meets cloud, where hardware meets code.",
+      intro: "Building the ROS 2 software stack for a Unitree G1 humanoid robot at Fraunhofer IOSB-INA. Embedded and IoT engineer with shipped products in real customers' hands, now working where hardware, software and Physical AI meet.",
       ctaPrimary: "Get in touch",
       ctaSecondary: "View projects",
-      pillResearch: "Researcher at iFE TH OWL",
+      pillResearch: "Humanoid robotics · Fraunhofer",
       pillExperience: "4+ years engineering",
       pillProducts: "8 shipped products"
     },
     about: {
       title: "About",
       kicker: "The story",
-      p1: "I am an Electrical Engineer with a specialisation in Electronics, currently completing my M.Sc. Information Technology at TH OWL (Lemgo, Germany) and entering my thesis phase.",
-      p2: "My engineering work sits at the intersection of hardware and software. I have built IoT lab infrastructure for federally funded research at the Institut für Energieforschung, integrated drone avionics at PNEC NUST in Pakistan, and shipped firmware end-to-end for embedded products including a hospital nurse-call system deployed at Hashim Medical City, an IoT fuel dispenser pilot for Daraz Pakistan, and an EV charger monitoring system on a Beckhoff industrial controller.",
+      p1: "I am an Electrical Engineer with a specialisation in Electronics. Since July 2026 I have been working on humanoid robotics at Fraunhofer IOSB-INA in Lemgo, and I am writing my M.Sc. Information Technology thesis at TH OWL alongside, in humanoid robotics and robot localization.",
+      p2: "My engineering work sits at the intersection of hardware and software. At Fraunhofer IOSB-INA I develop perception, navigation and operator software for a Unitree G1 humanoid. Before that, I built IoT lab infrastructure for federally funded research at the Institut für Energieforschung, integrated drone avionics at PNEC NUST in Pakistan, and shipped firmware end-to-end for embedded products including a hospital nurse-call system deployed at Hashim Medical City, an IoT fuel dispenser pilot for Daraz Pakistan, and an EV charger monitoring system on a Beckhoff industrial controller.",
       p3: "I moved from Karachi to Lemgo in October 2023 to pursue my Master's. The OWL region's density of industrial engineering (Phoenix Contact, KEB, Lenze, Weidmüller, Wago, Beckhoff and many more) is one of the reasons I chose TH OWL. It is one of the most concentrated embedded and automation ecosystems in Europe, and I want to build my career here.",
       p4: "Outside the lab, I run a YouTube channel called Bin Rao where I document life in the Lemgo and OWL region: the culture, the landscape, the rhythm of everyday Germany seen from a newcomer's eye. It is my way of giving something back to a region that has welcomed me and my family.",
       p5: "I live in Lemgo with my wife and our daughter, born here in 2026.",
@@ -115,7 +115,8 @@ const content = {
       youtubeChannel: "YouTube channel: @Bin_Rao",
       facts: [
         { label: "Based in", value: "Lemgo, NRW, Germany" },
-        { label: "Education", value: "M.Sc. IT, TH OWL (thesis phase)" },
+        { label: "Currently", value: "Working student, humanoid robotics · Fraunhofer IOSB-INA" },
+        { label: "Education", value: "M.Sc. IT, TH OWL (thesis alongside work)" },
         { label: "Languages", value: "English C1 · German A2 (B1 in progress) · Urdu native" },
         { label: "Permits & licenses", value: "Unrestricted work permit · EU driving license · LBA drone pilot A1/A3" }
       ]
@@ -124,6 +125,23 @@ const content = {
       title: "Experience",
       kicker: "Where I have worked",
       roles: [
+        {
+          period: "Jul 2026 – present",
+          title: "Werkstudent, Robotics & Humanoid Systems",
+          subtitle: "Working Student",
+          org: "Fraunhofer IOSB-INA, SmartFactoryOWL",
+          location: "Lemgo, Germany",
+          context: "Unitree G1 EDU humanoid (29 DoF, Dex3-1 hands)",
+          bullets: [
+            "Developing the ROS 2 software stack for a Unitree G1 EDU humanoid across perception, navigation, manipulation and operator interfaces",
+            "Marker-free absolute localization from floor texture (RootSIFT, RANSAC), running continuously as a systemd service on the robot's Jetson; scientific publication in preparation",
+            "Browser-based industrial robot control interface built from scratch (FastAPI, rclpy, React/TypeScript, JWT), fully commissioned on the robot including emergency-stop verification",
+            "Automated demonstration workflows: multi-step robot operations that used to need manual commands and ROS know-how now start with one click and are usable by colleagues without ROS experience",
+            "Dashboards and a three-layer 3D view of the work area (occupancy map, LiDAR point cloud, photorealistic scan) in three.js, live via rosbridge",
+            "SLAM mapping and autonomous navigation (Nav2, Livox Mid-360, FAST-LIO), including root-cause analysis of faulty maps down to height filtering in pointcloud_to_laserscan",
+            "omlox geofence to secure the work area around the robot, with violation events evaluated over MQTT"
+          ]
+        },
         {
           period: "Aug 2025 – Feb 2026",
           title: "Wissenschaftlicher Mitarbeiter",
@@ -259,7 +277,7 @@ const content = {
     projects: {
       title: "Projects",
       kicker: "Shipped work",
-      intro: "Eight projects spanning research at TH OWL, industrial work in Pakistan, and end-to-end product development. Each one shipped, deployed, or demonstrated in a real environment.",
+      intro: "Nine projects spanning research at TH OWL, industrial work in Pakistan, and end-to-end product development. Each one shipped, deployed, or demonstrated in a real environment.",
       closeLabel: "Close",
       stackLabel: "Stack",
       teamLabel: "Team",
@@ -270,7 +288,7 @@ const content = {
     contact: {
       title: "Get in touch",
       kicker: "Let's work together",
-      intro: "Open to Werkstudent, Abschlussarbeit (Master thesis), part-time, and full-time roles in Lemgo / OWL region or remote-friendly. Always happy to talk embedded systems, IoT, hardware-software integration, and the OWL engineering ecosystem.",
+      intro: "Open to full-time roles in robotics, Physical AI and embedded systems in the Lemgo / OWL region or remote-friendly. Always happy to talk humanoid robots, ROS 2, hardware-software integration, and the OWL engineering ecosystem.",
       emailLabel: "Email",
       phoneLabel: "Phone",
       locationLabel: "Location",
@@ -288,21 +306,21 @@ const content = {
   de: {
     nav: { about: "Über mich", experience: "Erfahrung", recognition: "Anerkennung", press: "Presse", projects: "Projekte", testimonials: "Empfehlungen", contact: "Kontakt" },
     hero: {
-      tagline: "Embedded Systems & IoT Engineer",
+      tagline: "Robotics & Embedded Systems Engineer",
       location: "Lemgo, Nordrhein-Westfalen, Deutschland",
       headline: "Brücke zwischen Hardware und Software, vom Konzept bis zum Einsatz.",
-      intro: "Forscher an der TH OWL mit ausgelieferten Produkten bei echten Kunden. Ich entwickle moderne eingebettete Systeme, wo Firmware auf Cloud trifft, wo Hardware auf Code trifft.",
+      intro: "Ich entwickle den ROS-2-Softwarestack für einen humanoiden Unitree G1 am Fraunhofer IOSB-INA. Embedded- und IoT-Ingenieur mit ausgelieferten Produkten bei echten Kunden, heute dort, wo Hardware, Software und Physical AI zusammenkommen.",
       ctaPrimary: "Kontakt aufnehmen",
       ctaSecondary: "Projekte ansehen",
-      pillResearch: "Forscher am iFE TH OWL",
+      pillResearch: "Humanoide Robotik · Fraunhofer",
       pillExperience: "4+ Jahre Erfahrung",
       pillProducts: "8 ausgelieferte Produkte"
     },
     about: {
       title: "Über mich",
       kicker: "Meine Geschichte",
-      p1: "Ich bin Elektroingenieur mit Schwerpunkt Elektronik und schließe derzeit meinen M.Sc. Information Technology an der TH OWL (Lemgo) ab. Ich beginne die Thesis-Phase.",
-      p2: "Meine Arbeit liegt an der Schnittstelle zwischen Hardware und Software. Am Institut für Energieforschung habe ich IoT-Laborinfrastruktur für ein bundesgefördertes Forschungsprojekt aufgebaut, bei PNEC NUST in Pakistan Drohnenavionik integriert und Firmware für eingebettete Produkte vollständig entwickelt: ein Krankenhaus-Schwesternruf-System im Hashim Medical City, ein IoT-Tankstellen-Pilotsystem für Daraz Pakistan und ein EV-Charger-Monitoring-System auf einem Beckhoff Industrierechner.",
+      p1: "Ich bin Elektroingenieur mit Schwerpunkt Elektronik. Seit Juli 2026 arbeite ich am Fraunhofer IOSB-INA in Lemgo an humanoider Robotik und schreibe berufsbegleitend meine Master-Thesis (M.Sc. Information Technology, TH OWL) im Themenfeld humanoide Robotik und Lokalisierung.",
+      p2: "Meine Arbeit liegt an der Schnittstelle zwischen Hardware und Software. Am Fraunhofer IOSB-INA entwickle ich Wahrnehmungs-, Navigations- und Bedienungssoftware für einen humanoiden Unitree G1. Zuvor habe ich am Institut für Energieforschung IoT-Laborinfrastruktur für ein bundesgefördertes Forschungsprojekt aufgebaut, bei PNEC NUST in Pakistan Drohnenavionik integriert und Firmware für eingebettete Produkte vollständig entwickelt: ein Krankenhaus-Schwesternruf-System im Hashim Medical City, ein IoT-Tankstellen-Pilotsystem für Daraz Pakistan und ein EV-Charger-Monitoring-System auf einem Beckhoff Industrierechner.",
       p3: "Im Oktober 2023 bin ich von Karatschi nach Lemgo gezogen, um meinen Master zu machen. Die Dichte der Industrietechnik in OWL (Phoenix Contact, KEB, Lenze, Weidmüller, Wago, Beckhoff und viele andere) war einer der Gründe für meine Wahl der TH OWL. OWL ist eines der dichtesten Embedded- und Automatisierungs-Ökosysteme Europas, und hier möchte ich meine Karriere aufbauen.",
       p4: "Neben dem Labor betreibe ich einen YouTube-Kanal namens Bin Rao, auf dem ich das Leben in Lemgo und der Region OWL dokumentiere: die Kultur, die Landschaft, den Alltag in Deutschland aus Sicht eines Zugezogenen. Es ist meine Art, der Region etwas zurückzugeben, die mich und meine Familie aufgenommen hat.",
       p5: "Ich lebe mit meiner Frau und unserer 2026 in Deutschland geborenen Tochter in Lemgo.",
@@ -310,7 +328,8 @@ const content = {
       youtubeChannel: "YouTube-Kanal: @Bin_Rao",
       facts: [
         { label: "Wohnort", value: "Lemgo, NRW, Deutschland" },
-        { label: "Studium", value: "M.Sc. IT, TH OWL (Thesis-Phase)" },
+        { label: "Aktuell", value: "Werkstudent, humanoide Robotik · Fraunhofer IOSB-INA" },
+        { label: "Studium", value: "M.Sc. IT, TH OWL (Thesis berufsbegleitend)" },
         { label: "Sprachen", value: "Englisch C1 · Deutsch A2 (B1 in Vorbereitung) · Urdu Muttersprache" },
         { label: "Erlaubnisse & Lizenzen", value: "Uneingeschränkte Arbeitserlaubnis · EU-Führerschein · LBA-Drohnenführerschein A1/A3" }
       ]
@@ -319,6 +338,23 @@ const content = {
       title: "Erfahrung",
       kicker: "Wo ich gearbeitet habe",
       roles: [
+        {
+          period: "Jul 2026 – heute",
+          title: "Werkstudent, Robotik und humanoide Systeme",
+          subtitle: "",
+          org: "Fraunhofer IOSB-INA, SmartFactoryOWL",
+          location: "Lemgo, Deutschland",
+          context: "Humanoider Unitree G1 EDU (29 DoF, Dex3-1-Hände)",
+          bullets: [
+            "Entwicklung des ROS-2-Softwarestacks für einen Unitree G1 EDU Humanoiden über Wahrnehmung, Navigation, Manipulation und Bedienoberflächen hinweg",
+            "Markerlose Absolutlokalisierung aus Bodentextur (RootSIFT, RANSAC), als systemd-Dienst im Dauerbetrieb auf dem Jetson des G1; wissenschaftliche Publikation in Vorbereitung",
+            "Browserbasierte industrielle Robotersteuerung von Grund auf (FastAPI, rclpy, React/TypeScript, JWT); vollständige Inbetriebnahme am Roboter inklusive Not-Aus-Verifikation",
+            "Automatisierung von Demonstrationsabläufen: mehrstufige Roboteroperationen sind per Klick startbar, reproduzierbar und auch ohne ROS-Kenntnisse bedienbar",
+            "Dashboards und dreischichtige 3D-Darstellung des Einsatzbereichs (Belegungskarte, LiDAR-Punktwolke, photorealistischer Scan) in three.js, live über rosbridge",
+            "SLAM-Kartierung und autonome Navigation (Nav2, Livox Mid-360, FAST-LIO), inklusive Ursachenanalyse fehlerhafter Karten bis zur Höhenfilterung in pointcloud_to_laserscan",
+            "omlox-Geofence zur Absicherung des Arbeitsbereichs um den Roboter; Auswertung der Verletzungsereignisse über MQTT"
+          ]
+        },
         {
           period: "Aug 2025 – Feb 2026",
           title: "Wissenschaftlicher Mitarbeiter",
@@ -454,7 +490,7 @@ const content = {
     projects: {
       title: "Projekte",
       kicker: "Ausgelieferte Arbeit",
-      intro: "Acht Projekte aus Forschung an der TH OWL, Industriearbeit in Pakistan und Produktentwicklung von Anfang bis Ende. Jedes davon ausgeliefert, eingesetzt oder in einer realen Umgebung demonstriert.",
+      intro: "Neun Projekte aus Forschung an der TH OWL, Industriearbeit in Pakistan und Produktentwicklung von Anfang bis Ende. Jedes davon ausgeliefert, eingesetzt oder in einer realen Umgebung demonstriert.",
       closeLabel: "Schließen",
       stackLabel: "Technologien",
       teamLabel: "Team",
@@ -465,7 +501,7 @@ const content = {
     contact: {
       title: "Kontakt",
       kicker: "Lass uns zusammenarbeiten",
-      intro: "Offen für Werkstudent, Abschlussarbeit, Teilzeit- und Vollzeitstellen im Raum Lemgo / OWL oder remote-freundlich. Immer gerne Gespräche über Embedded Systems, IoT, Hardware-Software-Integration und das OWL-Engineering-Ökosystem.",
+      intro: "Offen für Vollzeitstellen in Robotik, Physical AI und Embedded Systems im Raum Lemgo / OWL oder remote-freundlich. Immer gerne Gespräche über humanoide Roboter, ROS 2, Hardware-Software-Integration und das OWL-Engineering-Ökosystem.",
       emailLabel: "E-Mail",
       phoneLabel: "Telefon",
       locationLabel: "Ort",
@@ -483,6 +519,53 @@ const content = {
 };
 
 const projects = [
+  {
+    id: "unitree-g1-explorer",
+    en: {
+      title: "Unitree G1 Anatomy Explorer",
+      tagline: "Interactive 3D · Humanoid robotics · Open source",
+      period: "Oct 2026",
+      summary: "Interactive 3D teaching model of the Unitree G1 humanoid robot, built from Unitree's official URDF. Four views (Real, 3D, Skeleton and an X-ray Blueprint) let students click any joint, actuator, circuit board or wire to see what it does and where the information comes from. Runs in any browser, on phones, and as a single offline HTML file for the classroom.",
+      role: "Solo project. Concept, data pipeline, 3D viewer, technical research and documentation, with AI-assisted implementation (Claude Code).",
+      contributions: [
+        "Built a Python pipeline that parses the official URDF and all 34 STL meshes, then welds, quantises and compresses them into one 4.7 MB embedded data block",
+        "Implemented forward kinematics for all 29 joints in Three.js, with live joint sliders, range sweeps, preset poses and a walk cycle",
+        "Designed four rendering modes: realistic PBR finish, colour-coded assemblies, a kinematic skeleton with joint-axis markers, and an orthographic X-ray blueprint with dimensions",
+        "Modelled actuator cutaways, circuit boards (RK3588S, Jetson Orin NX, power distribution, BMS) and colour-coded power, motor-bus, Ethernet and sensor wiring that follows the robot's motion",
+        "Researched Unitree developer documentation and public teardowns, and labelled every fact as documented, teardown-based or illustrative",
+        "Packaged everything as one self-contained HTML file with automated offline browser tests, and published it as open source (MIT) with a live GitHub Pages demo"
+      ],
+      outcome: "A working classroom tool for a university robotics lecture, live in the browser and downloadable as a single file that runs fully offline.",
+      stack: ["Three.js", "WebGL", "JavaScript", "Python", "NumPy", "URDF", "Headless Chrome tests", "GitHub Pages"]
+    },
+    de: {
+      title: "Unitree G1 Anatomy Explorer",
+      tagline: "Interaktives 3D · Humanoide Robotik · Open Source",
+      period: "Okt 2026",
+      summary: "Interaktives 3D-Lehrmodell des humanoiden Roboters Unitree G1, aufgebaut aus Unitrees offizieller URDF. Vier Ansichten (Real, 3D, Skelett und eine Röntgen-Blaupause) zeigen per Klick, was jedes Gelenk, jeder Aktor, jede Platine und jedes Kabel tut und woher die Information stammt. Läuft in jedem Browser, auf dem Smartphone und als einzelne Offline-HTML-Datei im Hörsaal.",
+      role: "Einzelprojekt. Konzept, Datenpipeline, 3D-Viewer, technische Recherche und Dokumentation, Implementierung KI-unterstützt (Claude Code).",
+      contributions: [
+        "Python-Pipeline, die die offizielle URDF und alle 34 STL-Meshes einliest, zusammenführt, quantisiert und zu einem 4,7 MB großen eingebetteten Datenblock komprimiert",
+        "Vorwärtskinematik für alle 29 Gelenke in Three.js mit Live-Gelenkreglern, Bewegungsbereich-Animation, Posen und einem Gangzyklus",
+        "Vier Darstellungsmodi: realistisches PBR-Finish, farbcodierte Baugruppen, kinematisches Skelett mit Gelenkachsen und eine orthografische Röntgen-Blaupause mit Bemaßung",
+        "Modellierung von Aktor-Schnitten, Platinen (RK3588S, Jetson Orin NX, Leistungsverteilung, BMS) sowie farbcodierter Leistungs-, Motorbus-, Ethernet- und Sensorverkabelung, die der Bewegung folgt",
+        "Recherche in Unitree-Entwicklerdokumentation und öffentlichen Teardowns; jede Angabe ist als dokumentiert, Teardown-basiert oder illustrativ gekennzeichnet",
+        "Auslieferung als eine eigenständige HTML-Datei mit automatisierten Offline-Browsertests, veröffentlicht als Open Source (MIT) mit Live-Demo auf GitHub Pages"
+      ],
+      outcome: "Ein funktionierendes Lehrwerkzeug für eine Robotik-Vorlesung, live im Browser und als einzelne, vollständig offline lauffähige Datei herunterladbar.",
+      stack: ["Three.js", "WebGL", "JavaScript", "Python", "NumPy", "URDF", "Headless-Chrome-Tests", "GitHub Pages"]
+    },
+    cardImage: { src: "g1-blueprint.png", alt: "Unitree G1 Anatomy Explorer, X-ray blueprint view with actuator modules and wiring" },
+    media: [
+      { type: "image", src: "g1-real.png", alt: "Unitree G1 Anatomy Explorer, realistic view" },
+      { type: "image", src: "g1-skeleton.png", alt: "Unitree G1 Anatomy Explorer, kinematic skeleton view" },
+      { type: "image", src: "g1-blueprint.png", alt: "Unitree G1 Anatomy Explorer, blueprint view with actuator module details" }
+    ],
+    links: [
+      { href: "https://haseeb-engr.github.io/unitree-g1-anatomy-explorer/", en: "Try it live", de: "Live ausprobieren" },
+      { href: "https://github.com/haseeb-engr/unitree-g1-anatomy-explorer", en: "Source code", de: "Quellcode" }
+    ]
+  },
   {
     id: "dc-showroom",
     en: {
@@ -1035,7 +1118,7 @@ function Hero({ lang }) {
             />
             <div className="absolute -bottom-3 -left-3" style={{ background: 'var(--bg-elev-1)', border: '1px solid var(--border-subtle)', borderRadius: '8px', padding: '10px 14px' }}>
               <div className="font-mono text-xs text-tertiary mb-0.5">{lang === 'en' ? 'Currently' : 'Aktuell'}</div>
-              <div className="text-sm" style={{ color: 'var(--accent)' }}>M.Sc. IT @ TH OWL</div>
+              <div className="text-sm" style={{ color: 'var(--accent)' }}>Fraunhofer IOSB-INA</div>
             </div>
           </div>
         </div>
@@ -1275,6 +1358,17 @@ function ProjectModal({ project, lang, onClose }) {
         <MediaGallery project={project} />
 
         <p className="text-secondary leading-relaxed mb-6">{p.summary}</p>
+
+        {project.links && project.links.length > 0 && (
+          <div className="flex flex-wrap gap-2 mb-6">
+            {project.links.map((l, i) => (
+              <a key={i} href={l.href} target="_blank" rel="noopener noreferrer" className="arrow-link text-sm font-mono" style={{ color: i === 0 ? 'var(--bg-base)' : 'var(--accent)', background: i === 0 ? 'var(--accent)' : 'transparent', border: '1px solid var(--accent-strong)', borderRadius: '6px', padding: '8px 14px', textDecoration: 'none' }}>
+                {l[lang]}
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ marginLeft: '6px', display: 'inline' }}><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            ))}
+          </div>
+        )}
 
         <div className="mb-6 p-4" style={{ background: 'var(--bg-elev-2)', borderRadius: '8px' }}>
           <div className="font-mono text-xs text-tertiary mb-2">{t.teamLabel}</div>
